@@ -1,0 +1,99 @@
+{
+  "name": "youtube-dl-exec",
+  "description": "A simple Node.js wrapper for youtube-dl",
+  "homepage": "https://nicedoc.io/microlinkhq/youtube-dl-exec",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "author": {
+    "email": "hello@microlink.io",
+    "name": "microlink.io",
+    "url": "https://microlink.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microlinkhq/youtube-dl-exec.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microlinkhq/youtube-dl-exec/issues"
+  },
+  "keywords": [
+    "binary",
+    "nodejs",
+    "youtube-dl",
+    "youtube-dl-wrapper",
+    "youtube-downloader"
+  ],
+  "dependencies": {
+    "bin-version-check-cli": "~2.0.0",
+    "dargs": "~7.0.0",
+    "execa": "~5.0.0",
+    "got": "~11.8.1",
+    "is-unix": "~1.0.0",
+    "mkdirp": "~1.0.4",
+    "p-reflect": "~2.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "ava": "latest",
+    "conventional-github-releaser": "latest",
+    "coveralls": "latest",
+    "finepack": "latest",
+    "git-authors-cli": "latest",
+    "git-dirty": "latest",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "npm-check-updates": "latest",
+    "nyc": "latest",
+    "prettier-standard": "latest",
+    "standard": "latest",
+    "standard-markdown": "latest",
+    "standard-version": "latest"
+  },
+  "engines": {
+    "node": ">= 12"
+  },
+  "files": [
+    "scripts",
+    "src"
+  ],
+  "scripts": {
+    "check": "bin-version-check python '>=2'",
+    "clean": "rm -rf node_modules",
+    "contributors": "(git-authors-cli && finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "standard-markdown README.md && standard",
+    "postrelease": "npm run release:tags && npm run release:github && npm publish",
+    "prerelease": "git-dirty && npm run update:check && npm test && npm run contributors",
+    "pretest": "npm run lint",
+    "release": "git-authors-cli finepack && git add package.json && standard-version -a",
+    "release:github": "conventional-github-releaser -p angular",
+    "release:tags": "git push --follow-tags origin master",
+    "test": "nyc ava",
+    "update": "ncu -u",
+    "update:check": "ncu -- --error-level 2"
+  },
+  "license": "MIT",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "package.json": [
+      "finepack"
+    ],
+    "*.js": [
+      "prettier-standard"
+    ],
+    "*.md": [
+      "standard-markdown"
+    ]
+  }
+}
