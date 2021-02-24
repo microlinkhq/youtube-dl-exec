@@ -21,7 +21,7 @@ $ npm install youtube-dl-exec --save
 ```js
 const youtubedl = require('youtube-dl-exec')
 
-const outut = await youtubedl('https://example.com', {
+youtubedl('https://example.com', {
   noWarnings: true,
   noCallHome: true,
   noCheckCertificate: true,
@@ -29,8 +29,7 @@ const outut = await youtubedl('https://example.com', {
   youtubeSkipDashManifest: true,
   referer: 'https://example.com'
 })
-
-console.log(output)
+  .then(output => console.log(output))
 ```
 
 It's equivalent to:
