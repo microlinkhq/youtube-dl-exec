@@ -18,5 +18,5 @@ test('execute commands', async t => {
     }
   )
 
-  t.is(typeof output === 'object')
+  t.true(typeof output === 'object')
 })
