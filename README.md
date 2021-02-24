@@ -22,6 +22,7 @@ $ npm install youtube-dl-exec --save
 const youtubedl = require('youtube-dl-exec')
 
 youtubedl('https://example.com', {
+  dumpJson: true,
   noWarnings: true,
   noCallHome: true,
   noCheckCertificate: true,
