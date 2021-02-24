@@ -2,7 +2,7 @@
   "name": "youtube-dl-exec",
   "description": "A simple Node.js wrapper for youtube-dl",
   "homepage": "https://nicedoc.io/microlinkhq/youtube-dl-exec",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "src/index.js",
   "author": {
     "email": "hello@microlink.io",
@@ -10,10 +10,7 @@
     "url": "https://microlink.io"
   },
   "contributors": [
-    {
-      "name": "Kiko Beats",
-      "email": "josefrancisco.verdu@gmail.com"
-    }
+    "Kiko Beats <josefrancisco.verdu@gmail.com>"
   ],
   "repository": {
     "type": "git",
