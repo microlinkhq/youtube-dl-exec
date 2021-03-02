@@ -7,7 +7,7 @@ const PLATFORM_WIN = 'windows'
 const PLATFORM_UNIX = 'unix'
 
 const YOUTUBE_DL_HOST =
-  process.env.YOUTUBE_DL_YOUTUBE_DL_HOST ||
+  process.env.YOUTUBE_DL_HOST ||
   'https://api.github.com/repos/ytdl-org/youtube-dl/releases?per_page=1'
 
 const YOUTUBE_DL_DIR =
