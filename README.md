@@ -86,7 +86,7 @@ The default folder is `bin`.
 
 It determines the binary filename.
 
-The default binary file could be `youtube-dl` or `youtube-dl.exe`, depending of the `YOUTUBE_DL_PLATFORM` value.
+The default binary file could be `youtube-dl` or `youtube-dl.exe`, depending of the [`YOUTUBE_DL_PLATFORM`](#youtube_dl_platform) value.
 
 ### YOUTUBE_DL_PLATFORM
 
