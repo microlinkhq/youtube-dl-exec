@@ -62,6 +62,38 @@ Type: `object`
 
 Any option provided here will passed to [execa#options](https://github.com/sindresorhus/execa#options).
 
+### Environment variables
+
+The environment variables are taken into account when you perform a `npm install` in a project that contains `youtube-dl-exec` dependency.
+
+They setup the download configuration for getting the `youtube-dl` binary file. 
+
+These variables can be
+
+#### YOUTUBE_DL_HOST
+
+It determines the remote URL for getting the `youtube-dl` binary file.
+
+The default URL is [ytdl-org/youtube-dl latest release](https://github.com/ytdl-org/youtube-dl/releases/latest).
+
+#### YOUTUBE_DL_DIR
+
+It determines the folder where to put the binary file.
+
+The default folder is `bin`.
+
+#### YOUTUBE_DL_FILENAME
+
+It determines the binary filename.
+
+The default binary file could be `youtube-dl` or `youtube-dl.exe`, depending of the `YOUTUBE_DL_PLATFORM` value.
+
+#### YOUTUBE_DL_PLATFORM
+
+It determines the architecture of the machine that will use the `youtube-dl` binary.
+
+The default value will computed from `process.platform`, being `'unix'` or `'windows'`.
+
 ## License
 
 **youtube-dl-exec** © [microlink.io](https://microlink.io), released under the [MIT](https://github.com/microlinkhq/youtube-dl-exec/blob/master/LICENSE.md) License.<br>
