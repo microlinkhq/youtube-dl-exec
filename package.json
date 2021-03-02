@@ -30,9 +30,11 @@
     "bin-version-check-cli": "~2.0.0",
     "dargs": "~7.0.0",
     "execa": "~5.0.0",
+    "get-stream": "~6.0.0",
     "got": "~11.8.1",
     "is-unix": "~1.0.0",
     "mkdirp": "~1.0.4",
+    "p-event": "~4.2.0",
     "p-reflect": "~2.1.0"
   },
   "devDependencies": {
