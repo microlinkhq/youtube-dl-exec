@@ -1,7 +1,7 @@
 'use strict'
 
 const getStream = require('get-stream')
-const fs = require('fs/promises')
+const fs = require('fs').promises
 const pEvent = require('p-event')
 const mkdirp = require('mkdirp')
 
