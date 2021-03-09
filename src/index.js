@@ -9,7 +9,11 @@ const args = (url, flags = {}) => [].concat(url, dargs(flags)).filter(Boolean)
 
 module.exports = async (url, flags, opts) => {
   const { stdout } = await execa(YOUTUBE_DL_PATH, args(url, flags), opts)
-  return JSON.parse(stdout)
+  try {
+    return JSON.parse(stdout)
+  } catch(e) {
+    return std
+  }
 }
 
 module.exports.args = args
