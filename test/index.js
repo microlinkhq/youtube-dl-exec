@@ -20,3 +20,17 @@ test('execute commands', async t => {
 
   t.true(typeof output === 'object')
 })
+
+test('conditional JSON parsing', async t => {
+  const output = await youtubedl(
+    'https://www.youtube.com/watch?v=tu3Db9onH6k',
+    {
+      listFormats: true,
+      noWarnings: true,
+      noCallHome: true,
+      noCheckCertificate: true
+    }
+  )
+
+  t.is(typeof output, 'string')
+})
