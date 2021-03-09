@@ -11,7 +11,7 @@ module.exports = async (url, flags, opts) => {
   const { stdout } = await execa(YOUTUBE_DL_PATH, args(url, flags), opts)
   try {
     return JSON.parse(stdout)
-  } catch(e) {
+  } catch (e) {
     return stdout
   }
 }
