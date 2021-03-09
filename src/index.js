@@ -12,7 +12,7 @@ module.exports = async (url, flags, opts) => {
   try {
     return JSON.parse(stdout)
   } catch(e) {
-    return std
+    return stdout
   }
 }
 
