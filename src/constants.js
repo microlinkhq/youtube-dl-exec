@@ -3,7 +3,7 @@
 const isUnix = require('is-unix')
 const path = require('path')
 
-const PLATFORM_WIN = 'windows'
+const PLATFORM_WIN = 'win32'
 const PLATFORM_UNIX = 'unix'
 
 const YOUTUBE_DL_HOST =
@@ -19,8 +19,8 @@ const YOUTUBE_DL_PLATFORM =
     : PLATFORM_WIN
 
 const YOUTUBE_DL_FILENAME =
-  process.env.YOUTUBE_DL_YOUTUBE_DL_FILENAME ||
-  `youtube-dl${process.platform === PLATFORM_WIN ? '.exe' : ''}`
+  process.env.YOUTUBE_DL_FILENAME ||
+  `youtube-dl${YOUTUBE_DL_PLATFORM === PLATFORM_WIN ? '.exe' : ''}`
 
 const YOUTUBE_DL_PATH = path.join(YOUTUBE_DL_DIR, YOUTUBE_DL_FILENAME)
 
