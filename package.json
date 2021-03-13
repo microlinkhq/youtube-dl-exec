@@ -10,7 +10,14 @@
     "url": "https://microlink.io"
   },
   "contributors": [
-    "Kiko Beats <josefrancisco.verdu@gmail.com>"
+    {
+      "name": "Kiko Beats",
+      "email": "josefrancisco.verdu@gmail.com"
+    },
+    {
+      "name": "Skick",
+      "email": "skick1234@gmail.com"
+    }
   ],
   "repository": {
     "type": "git",
