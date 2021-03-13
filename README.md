@@ -92,7 +92,7 @@ The default binary file could be `youtube-dl` or `youtube-dl.exe`, depending of 
 
 It determines the architecture of the machine that will use the `youtube-dl` binary.
 
-The default value will computed from `process.platform`, being `'unix'` or `'windows'`.
+The default value will computed from `process.platform`, being `'unix'` or `'win32'`.
 
 ## License
 
