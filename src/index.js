@@ -9,9 +9,12 @@ const args = (url, flags = {}) => [].concat(url, dargs(flags)).filter(Boolean)
 
 const isJSON = str => str.startsWith('{')
 
-module.exports = async (url, flags, opts) => {
-  const { stdout } = await execa(YOUTUBE_DL_PATH, args(url, flags), opts)
-  return isJSON(stdout) ? JSON.parse(stdout) : stdout
-}
+const parse = ({ stdout }) => (isJSON(stdout) ? JSON.parse(stdout) : stdout)
+
+const raw = (url, flags, opts) => execa(YOUTUBE_DL_PATH, args(url, flags), opts)
+
+module.exports = (url, flags, opts) => raw(url, flags, opts).then(parse)
+
+module.exports.raw = raw
 
 module.exports.args = args
