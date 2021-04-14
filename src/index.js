@@ -5,7 +5,8 @@ const execa = require('execa')
 
 const { YOUTUBE_DL_PATH } = require('./constants')
 
-const args = (url, flags = {}) => [].concat(url, dargs(flags)).filter(Boolean)
+const args = (url, flags = {}) =>
+  [].concat(url, dargs(flags, { useEquals: false })).filter(Boolean)
 
 const isJSON = str => str.startsWith('{')
 
