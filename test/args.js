@@ -23,8 +23,11 @@ test('parse arguments into flags', async t => {
     '--no-check-certificate',
     '--prefer-free-formats',
     '--youtube-skip-dash-manifest',
-    '--referer=https://example.com',
-    '--car-dir=/tmp',
-    '--user-agent=googlebot'
+    '--referer',
+    'https://example.com',
+    '--car-dir',
+    '/tmp',
+    '--user-agent',
+    'googlebot'
   ])
 })
