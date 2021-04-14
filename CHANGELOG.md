@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/microlinkhq/youtube-dl-exec/compare/v1.2.0...v1.2.1) (2021-04-14)
+
+
+### Bug Fixes
+
+* single-character-flags with values are now supported ([c7228c0](https://github.com/microlinkhq/youtube-dl-exec/commit/c7228c0e0464bd8aa9753043a5f88b6a76eb826e))
+* updated test file ([3d45d24](https://github.com/microlinkhq/youtube-dl-exec/commit/3d45d248165c6fcc4c06f2195e6e911199163966))
+
 ## [1.2.0](https://github.com/microlinkhq/youtube-dl-exec/compare/v1.1.3...v1.2.0) (2021-04-02)
 
 
