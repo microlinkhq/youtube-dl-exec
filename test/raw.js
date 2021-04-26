@@ -8,7 +8,7 @@ test('acess to subprocess object', async t => {
   const subprocess = youtubedl.raw(
     'https://www.youtube.com/watch?v=2Z4m4lnjxkY',
     {
-      dumpJson: true
+      dumpSingleJson: true
     }
   )
 

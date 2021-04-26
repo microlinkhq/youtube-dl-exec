@@ -22,7 +22,7 @@ $ npm install youtube-dl-exec --save
 const youtubedl = require('youtube-dl-exec')
 
 youtubedl('https://example.com', {
-  dumpJson: true,
+  dumpSingleJson: true,
   noWarnings: true,
   noCallHome: true,
   noCheckCertificate: true,
@@ -68,7 +68,7 @@ It's the same than the main method but it will return the raw subprocess object:
 const youtubedl = require('youtube-dl-exec')
 const fs = require('fs')
 
-const subprocess = youtubedl.raw('https://example.com', { dumpJson: true })
+const subprocess = youtubedl.raw('https://example.com', { dumpSingleJson: true })
 
 console.log(`Running subprocess as ${subprocess.pid}`)
 

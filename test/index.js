@@ -14,7 +14,7 @@ test('execute commands', async t => {
   const output = await youtubedl(
     'https://www.youtube.com/watch?v=2Z4m4lnjxkY',
     {
-      dumpJson: true
+      dumpSingleJson: true
     }
   )
 
