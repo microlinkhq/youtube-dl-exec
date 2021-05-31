@@ -50,7 +50,7 @@
     "is-unix": "~1.0.0",
     "mkdirp": "~1.0.4",
     "p-event": "~4.2.0",
-    "p-reflect": "~2.1.0"
+    "p-reflect": "~3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
