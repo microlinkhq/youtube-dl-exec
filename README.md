@@ -7,7 +7,7 @@
 ## Why
 
 - Auto install the latest `youtube-dl` version available.
-- Executes any command in a efficient way.
+- Executes any command in an efficient way.
 - Promise & Stream interface support.
 
 ## Install
