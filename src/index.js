@@ -8,7 +8,7 @@ const { YOUTUBE_DL_PATH } = require('./constants')
 const args = (url, flags = {}) =>
   [].concat(url, dargs(flags, { useEquals: false })).filter(Boolean)
 
-const isJSON = str => str.startsWith('{')
+const isJSON = (str = '') => str.startsWith('{')
 
 const parse = ({ stdout }) => (isJSON(stdout) ? JSON.parse(stdout) : stdout)
 
