@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/microlinkhq/youtube-dl-exec/compare/v1.2.4...v1.2.5) (2021-08-30)
+
+
+### Bug Fixes
+
+* ensure isJSON receive string  ([d3b6818](https://github.com/microlinkhq/youtube-dl-exec/commit/d3b6818feb4b5917cf1d5d49673a3a6db26bdf49)), closes [#28](https://github.com/microlinkhq/youtube-dl-exec/issues/28)
+* **Readme:** fix typo ([40b4668](https://github.com/microlinkhq/youtube-dl-exec/commit/40b4668d3c5319cce9ae674bc4cfa8d40cebf634))
+
 ### [1.2.4](https://github.com/microlinkhq/youtube-dl-exec/compare/v1.2.3...v1.2.4) (2021-06-04)
 
 ### [1.2.3](https://github.com/microlinkhq/youtube-dl-exec/compare/v1.2.2...v1.2.3) (2021-04-28)
