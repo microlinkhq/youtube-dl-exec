@@ -32,7 +32,7 @@ declare module 'youtube-dl-exec' {
         id: string,
     }
 
-    type YtResponse = {
+    export type YtResponse = {
         id: string,
         title: string,
         formats: YtFormat[],
