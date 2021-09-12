@@ -1,6 +1,12 @@
 <div align="center">
-  <img src="https://cdn.microlink.io/logo/banner.png"">
+  <img src="https://cdn.microlink.io/logo/banner.png">
+  <br>
+  <br>
 </div>
+
+![Last version](https://img.shields.io/github/tag/microlinkhq/youtube-dl-exec.svg?style=flat-square)
+[![Coverage Status](https://img.shields.io/coveralls/microlinkhq/youtube-dl-exec.svg?style=flat-square)](https://coveralls.io/github/microlinkhq/youtube-dl-exec)
+[![NPM Status](https://img.shields.io/npm/dm/youtube-dl-exec.svg?style=flat-square)](https://www.npmjs.org/package/youtube-dl-exec)
 
 > A simple Node.js wrapper for [youtube-dl](https://github.com/ytdl-org/youtube-dl).
 
