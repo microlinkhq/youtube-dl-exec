@@ -33,12 +33,9 @@
     "bin-version-check-cli": "~3.0.0",
     "dargs": "~7.0.0",
     "execa": "~5.1.0",
-    "get-stream": "~6.0.1",
-    "got": "~11.8.2",
-    "is-unix": "~1.0.0",
+    "is-unix": "~2.0.1",
     "mkdirp": "~1.0.4",
-    "p-event": "~4.2.0",
-    "p-reflect": "~2.1.0"
+    "node-fetch": "~2.6.5"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
@@ -51,6 +48,7 @@
     "lint-staged": "latest",
     "npm-check-updates": "latest",
     "nyc": "latest",
+    "p-reflect": "2",
     "prettier-standard": "latest",
     "simple-git-hooks": "latest",
     "standard": "latest",
@@ -70,7 +68,7 @@
     "contributors": "(git-authors-cli && finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard-markdown README.md && standard",
-    "postinstall": "node scripts/postinstall.js",
+    "postinstall": "npm run check && node scripts/postinstall.js",
     "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
     "prerelease": "npm run update:check && npm run contributors",
     "pretest": "npm run lint",
