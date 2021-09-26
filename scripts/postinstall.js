@@ -14,7 +14,7 @@ const {
   YOUTUBE_DL_PATH,
   YOUTUBE_DL_HOST,
   YOUTUBE_DL_DIR,
-  YOUTUBE_DL_FILENAME
+  YOUTUBE_DL_FILE
 } = require('../src/constants')
 
 const getBinary = async url => {
@@ -27,7 +27,7 @@ const getBinary = async url => {
 
   const [{ assets }] = await response.json()
   const { browser_download_url: downloadUrl } = assets.find(
-    ({ name }) => name === YOUTUBE_DL_FILENAME
+    ({ name }) => name === YOUTUBE_DL_FILE
   )
 
   return fetch(downloadUrl).then(res => res.buffer())
