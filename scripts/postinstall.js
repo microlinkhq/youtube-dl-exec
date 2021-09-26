@@ -1,11 +1,8 @@
 'use strict'
 
-const getStream = require('get-stream')
+const fetch = require('node-fetch')
 const fs = require('fs').promises
-const pEvent = require('p-event')
 const mkdirp = require('mkdirp')
-
-const got = require('got')
 
 const BINARY_CONTENT_TYPES = [
   'binary/octet-stream',
@@ -21,20 +18,19 @@ const {
 } = require('../src/constants')
 
 const getBinary = async url => {
-  const stream = got.stream(url)
-  const response = await pEvent(stream, 'response')
-  const contentType = response.headers['content-type']
+  const response = await fetch(url)
+  const contentType = response.headers.get('content-type')
 
   if (BINARY_CONTENT_TYPES.includes(contentType)) {
-    return getStream(stream, { encoding: 'buffer' })
+    return response.buffer()
   }
 
-  const [{ assets }] = JSON.parse(await getStream(stream))
+  const [{ assets }] = await response.json()
   const { browser_download_url: downloadUrl } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILENAME
   )
 
-  return got(downloadUrl).buffer()
+  return fetch(downloadUrl).then(res => res.buffer())
 }
 
 Promise.all([getBinary(YOUTUBE_DL_HOST), mkdirp(YOUTUBE_DL_DIR)])
