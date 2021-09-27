@@ -6,23 +6,20 @@ const path = require('path')
 const PLATFORM_WIN = 'win32'
 const PLATFORM_UNIX = 'unix'
 
-const YOUTUBE_DL_HOST =
-  process.env.YOUTUBE_DL_HOST ||
-  process.env.npm_config_YOUTUBE_DL_HOST ||
-  'https://api.github.com/repos/ytdl-org/youtube-dl/releases?per_page=1'
+function get (key) {
+  if (!key) return undefined
+  return process.env[key] || process.env[`npm_config_${key.toLowerCase()}`]
+}
 
-const YOUTUBE_DL_DIR =
-  process.env.YOUTUBE_DL_DIR || process.env.npm_config_YOUTUBE_DL_DIR || path.join(__dirname, '..', 'bin')
+const YOUTUBE_DL_HOST = get('YOUTUBE_DL_HOST') || 'https://api.github.com/repos/ytdl-org/youtube-dl/releases?per_page=1'
 
-const YOUTUBE_DL_PLATFORM =
-  process.env.YOUTUBE_DL_PLATFORM || process.env.npm_config_YOUTUBE_DL_PLATFORM || isUnix(process.platform)
-    ? PLATFORM_UNIX
-    : PLATFORM_WIN
+const YOUTUBE_DL_DIR = get('YOUTUBE_DL_DIR') || path.join(__dirname, '..', 'bin')
 
-const YOUTUBE_DL_FILENAME =
-  process.env.YOUTUBE_DL_FILENAME ||
-  process.env.npm_config_YOUTUBE_DL_FILENAME ||
-  'youtube-dl'
+const YOUTUBE_DL_PLATFORM = get('YOUTUBE_DL_PLATFORM') || isUnix(process.platform)
+  ? PLATFORM_UNIX
+  : PLATFORM_WIN
+
+const YOUTUBE_DL_FILENAME = get('YOUTUBE_DL_FILENAME') || 'youtube-dl'
 
 const YOUTUBE_DL_FILE = !YOUTUBE_DL_FILENAME.endsWith('.exe') && YOUTUBE_DL_PLATFORM === 'win32' ? `${YOUTUBE_DL_FILENAME}.exe` : YOUTUBE_DL_FILENAME
 
