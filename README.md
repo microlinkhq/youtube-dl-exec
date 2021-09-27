@@ -88,6 +88,8 @@ setTimeout(subprocess.cancel, 30000)
 
 The environment variables are taken into account when you perform a `npm install` in a project that contains `youtube-dl-exec` dependency.
 
+These environment variables can also be set through "npm config", for example `npm install --YOUTUBE_DL_HOST="Some URL"`, or store it in `.npmrc` file.
+
 They setup the download configuration for getting the `youtube-dl` binary file.
 
 These variables can be
