@@ -63,7 +63,7 @@
     "src"
   ],
   "scripts": {
-    "check": "bin-version-check python '>=2'",
+    "check": "bin-version-check python \">=2\"",
     "clean": "rm -rf node_modules",
     "contributors": "(git-authors-cli && finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
