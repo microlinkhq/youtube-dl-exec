@@ -8,7 +8,7 @@ const PLATFORM_UNIX = 'unix'
 
 function get (key) {
   if (!key) return undefined
-  return process.env[key] || process.env[`npm_config_${key.toLowerCase()}`]
+  return process.env[key] || process.env[`npm_config_${key.toLowerCase()}`] || process.env[`npm_config_${key.toUpperCase()}`]
 }
 
 const YOUTUBE_DL_HOST = get('YOUTUBE_DL_HOST') || 'https://api.github.com/repos/ytdl-org/youtube-dl/releases?per_page=1'
