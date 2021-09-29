@@ -1,13 +1,11 @@
 'use strict'
 
-const pReflect = require('p-reflect')
 const test = require('ava')
 
 const youtubedl = require('..')
 
 test('throw errors', async t => {
-  const { reason } = await pReflect(youtubedl())
-  t.true(reason instanceof Error)
+  await t.throwsAsync(youtubedl(), { instanceOf: Error })
 })
 
 test('execute commands', async t => {
