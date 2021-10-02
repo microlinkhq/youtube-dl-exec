@@ -17,7 +17,6 @@ test('parse arguments into flags', async t => {
   })
 
   t.deepEqual(flags, [
-    'https://example',
     '--no-warnings',
     '--no-call-home',
     '--no-check-certificate',
@@ -28,6 +27,8 @@ test('parse arguments into flags', async t => {
     '--car-dir',
     '/tmp',
     '--user-agent',
-    'googlebot'
+    'googlebot',
+    '--',
+    'https://example'
   ])
 })
