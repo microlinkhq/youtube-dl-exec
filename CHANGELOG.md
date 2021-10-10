@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.3.0 (2021-10-10)
+
+
+### Features
+
+* be possible specify binary path ([d4f06a9](https://github.com/microlinkhq/youtube-dl-exec/commit/d4f06a9967c4f654dc532105b74a5669f689bc39)), closes [#43](https://github.com/microlinkhq/youtube-dl-exec/issues/43)
+
 ### 1.2.14 (2021-09-29)
 
 ### 1.2.13 (2021-09-27)
