@@ -14,7 +14,8 @@ const {
   YOUTUBE_DL_PATH,
   YOUTUBE_DL_HOST,
   YOUTUBE_DL_DIR,
-  YOUTUBE_DL_FILE
+  YOUTUBE_DL_FILE,
+  YOUTUBE_DL_SKIP_DOWNLOAD
 } = require('../src/constants')
 
 const getBinary = async url => {
@@ -33,6 +34,8 @@ const getBinary = async url => {
   return fetch(downloadUrl).then(res => res.buffer())
 }
 
-Promise.all([getBinary(YOUTUBE_DL_HOST), mkdirp(YOUTUBE_DL_DIR)])
-  .then(([buffer]) => fs.writeFile(YOUTUBE_DL_PATH, buffer, { mode: 493 }))
-  .catch(err => console.error(err.message || err))
+if (!YOUTUBE_DL_SKIP_DOWNLOAD) {
+  Promise.all([getBinary(YOUTUBE_DL_HOST), mkdirp(YOUTUBE_DL_DIR)])
+    .then(([buffer]) => fs.writeFile(YOUTUBE_DL_PATH, buffer, { mode: 493 }))
+    .catch(err => console.error(err.message || err))
+}

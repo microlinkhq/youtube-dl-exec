@@ -45,9 +45,23 @@ It's equivalent to:
 $ youtube-dl https://example.com --dump-single-json --no-warnings --no-call-home --no-check-certificate --prefer-free-formats --youtube-skip-dash-manifest --referer=https://example.com
 ```
 
+The library will use the latest `youtube-dl` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
+
+Alternatively, you can specify your own binary path using [`.create`]():
+
+```js
+const { create: createYoutubeDl } = require('youtube-dl-exec')
+
+const youtubedl = createYoutubeDl('/my/binary/path')
+```
+
+You can combine it with [YOUTUBE_DL_SKIP_DOWNLOAD](#youtube_dl_skip_download). See [environment variables](#environment-variables) to know more.
+
 ## API
 
 ### youtubedl(url, [flags], [options])
+
+It execs any `youtube-dl` command, returning back the output.
 
 #### url
 
@@ -68,7 +82,7 @@ Any option provided here will passed to [execa#options](https://github.com/sindr
 
 ### youtubedl.raw(url, [flags], [options])
 
-It's the same than the main method but it will return the raw subprocess object:
+Similar to main method but instead of a parsed output, it will return the internal subprocess object
 
 ```js
 const youtubedl = require('youtube-dl-exec')
@@ -83,6 +97,10 @@ subprocess.stderr.pipe(fs.createWriteStream('stderr.txt'))
 
 setTimeout(subprocess.cancel, 30000)
 ```
+
+### youtubedl.create(binaryPath)
+
+It creates a `youtube-dl` using the `binaryPath` provided.
 
 ## Environment variables
 
@@ -117,6 +135,10 @@ The default binary file could be `youtube-dl` or `youtube-dl.exe`, depending of 
 It determines the architecture of the machine that will use the `youtube-dl` binary.
 
 The default value will computed from `process.platform`, being `'unix'` or `'win32'`.
+
+### YOUTUBE_DL_SKIP_DOWNLOAD
+
+When is present, it will skip the [postinstall](/scripts/postinstall.js) script for fetching the latest `youtube-dl` version.
 
 ## License
 
