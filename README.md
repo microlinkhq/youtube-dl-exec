@@ -140,6 +140,12 @@ The default value will computed from `process.platform`, being `'unix'` or `'win
 
 When is present, it will skip the [postinstall](/scripts/postinstall.js) script for fetching the latest `youtube-dl` version.
 
+That variable should be set before performing the installation command, such as:
+
+```bash
+YOUTUBE_DL_SKIP_DOWNLOAD=true npm install
+```
+
 ## License
 
 **youtube-dl-exec** © [microlink.io](https://microlink.io), released under the [MIT](https://github.com/microlinkhq/youtube-dl-exec/blob/master/LICENSE.md) License.<br>
