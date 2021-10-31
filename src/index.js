@@ -3,6 +3,8 @@
 const dargs = require('dargs')
 const execa = require('execa')
 
+const { YOUTUBE_DL_PATH } = require('./constants')
+
 const args = (url, flags = {}) =>
   [].concat(url, dargs(flags, { useEquals: false })).filter(Boolean)
 
@@ -16,7 +18,8 @@ const create = binaryPath => {
   return fn
 }
 
-module.exports = create(require('./constants').YOUTUBE_DL_PATH)
+module.exports = create(YOUTUBE_DL_PATH)
+module.exports.raw = create(YOUTUBE_DL_PATH).raw
 module.exports.create = create
 module.exports.args = args
 module.exports.isJSON = isJSON
