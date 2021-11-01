@@ -30,7 +30,6 @@
     "youtube-downloader"
   ],
   "dependencies": {
-    "bin-version-check-cli": "~3.0.0",
     "dargs": "~7.0.0",
     "execa": "~5.1.0",
     "is-unix": "~2.0.1",
@@ -62,13 +61,13 @@
     "src"
   ],
   "scripts": {
-    "check": "bin-version-check python \">=2\"",
     "clean": "rm -rf node_modules",
     "contributors": "(git-authors-cli && finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard-markdown README.md && standard",
-    "postinstall": "npm run check && node scripts/postinstall.js",
+    "postinstall": "node scripts/postinstall.js",
     "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
+    "preinstall": "npx bin-version-check-cli python \">=2\"",
     "prerelease": "npm run update:check && npm run contributors",
     "pretest": "npm run lint",
     "release": "standard-version -a",
