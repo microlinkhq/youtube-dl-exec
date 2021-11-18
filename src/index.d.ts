@@ -248,5 +248,7 @@ declare module 'youtube-dl-exec' {
     export function create(binaryPath?: string): {
         (url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>;
         raw(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
+        getDownloadInfo(url: string, flags?: YtFlags, options?: Options<string>) : Promise<YtResponse>;
+        fromDownloadInfo(info: YtResponse, flags?: YtFlags, options?: Options<string>) : Promise<YtResponse>;
     }
 }
