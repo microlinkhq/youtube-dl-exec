@@ -2,10 +2,10 @@
 
 const test = require('ava')
 
-const youtubedl = require('..')
+const youtubedl = require('../src')
 
 test('acess to subprocess object', async t => {
-  const subprocess = youtubedl.raw(
+  const subprocess = youtubedl.exec(
     'https://www.youtube.com/watch?v=2Z4m4lnjxkY',
     {
       dumpSingleJson: true
