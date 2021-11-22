@@ -102,6 +102,41 @@ setTimeout(subprocess.cancel, 30000)
 
 It creates a `youtube-dl` using the `binaryPath` provided.
 
+### using youtube-dl's `load-info-json` flag
+
+When download a video with youtube-dl, the page gets downloaded retiving useful information stored in a `YtResponse`.
+This information can be dumped using the `dump-json` or the `dump-single-json` flags.
+Then this info can be piped back to youtube-dl with the `load-info-json` flag, so that the page won't be download again.
+
+```js
+const youtubedl = require('youtube-dl-exec')
+
+const getInfo = (url, flags) => youtubedl(url, { dumpSingleJson: true, ...flags })
+
+const fromInfo = (info, flags) => {
+  const process = youtubedl.exec('', { loadInfoJson: '-', ...flags })
+  process.stdin.write(JSON.stringify(info))
+  process.stdin.end() 
+  return process
+}
+async function main () {
+  const url = 'https://www.youtube.com/watch?v=f6k0FlHGrZE'
+
+  // with this function we get a YtResponse with all the info about the video
+  // this info can be read and used and then passed again to youtube-dl, without having to query it again
+  const info = await getInfo(url)
+
+  // the info the we retrive can be read directly or passed to youtube-dl
+  console.log(info.description)
+  console.log((await fromInfo(info, { listThumbnails: true })).stdout)
+  
+  // and finally we can download the video
+  await fromInfo(info, { output: 'path/to/output' });
+}
+
+main()
+```
+
 ## Environment variables
 
 The environment variables are taken into account when you perform a `npm install` in a project that contains `youtube-dl-exec` dependency.
