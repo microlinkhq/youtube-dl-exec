@@ -132,7 +132,7 @@ declare module 'youtube-dl-exec' {
         noPlaylist?: boolean,
         yesPlaylist?: boolean,
         ageLimit?: number,
-        dowloadArchive?: string,
+        downloadArchive?: string,
         includeAds?: boolean,
         limitRate?: string,
         retries?: number | 'infinite',
