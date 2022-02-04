@@ -101,7 +101,7 @@ declare module 'youtube-dl-exec' {
         extractorDescriptions?: boolean,
         forceGenericExtractor?: boolean,
         defaultSearch?: string,
-        igonreConfig?: boolean,
+        ignoreConfig?: boolean,
         configLocation?: string,
         flatPlaylist?: boolean,
         markWatched?: boolean,
