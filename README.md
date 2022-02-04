@@ -35,8 +35,7 @@ youtubedl('https://example.com', {
   preferFreeFormats: true,
   youtubeSkipDashManifest: true,
   referer: 'https://example.com'
-})
-  .then(output => console.log(output))
+}).then(output => console.log(output))
 ```
 
 It's equivalent to:
@@ -65,7 +64,7 @@ It execs any `youtube-dl` command, returning back the output.
 
 #### url
 
-*Required*<br>
+_Required_<br>
 Type: `string`
 
 The URL to target.
@@ -88,7 +87,9 @@ Similar to main method but instead of a parsed output, it will return the intern
 const youtubedl = require('youtube-dl-exec')
 const fs = require('fs')
 
-const subprocess = youtubedl.exec('https://example.com', { dumpSingleJson: true })
+const subprocess = youtubedl.raw('https://example.com', {
+  dumpSingleJson: true
+})
 
 console.log(`Running subprocess as ${subprocess.pid}`)
 
