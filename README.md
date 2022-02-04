@@ -79,7 +79,7 @@ Any flag supported by `youtube-dl`.
 
 Any option provided here will passed to [execa#options](https://github.com/sindresorhus/execa#options).
 
-### youtubedl.raw(url, [flags], [options])
+### youtubedl.exec(url, [flags], [options])
 
 Similar to main method but instead of a parsed output, it will return the internal subprocess object
 

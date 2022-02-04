@@ -101,7 +101,7 @@ declare module 'youtube-dl-exec' {
         extractorDescriptions?: boolean,
         forceGenericExtractor?: boolean,
         defaultSearch?: string,
-        igonreConfig?: boolean,
+        ignoreConfig?: boolean,
         configLocation?: string,
         flatPlaylist?: boolean,
         markWatched?: boolean,
@@ -132,7 +132,7 @@ declare module 'youtube-dl-exec' {
         noPlaylist?: boolean,
         yesPlaylist?: boolean,
         ageLimit?: number,
-        dowloadArchive?: string,
+        downloadArchive?: string,
         includeAds?: boolean,
         limitRate?: string,
         retries?: number | 'infinite',
@@ -244,11 +244,9 @@ declare module 'youtube-dl-exec' {
     }
 
     export default function(url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>;
-    export function raw(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
+    export function exec(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
     export function create(binaryPath?: string): {
         (url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>;
-        raw(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
-        getDownloadInfo(url: string, flags?: YtFlags, options?: Options<string>) : Promise<YtResponse>;
-        fromDownloadInfo(info: YtResponse, flags?: YtFlags, options?: Options<string>) : Promise<YtResponse>;
+        exec(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
     }
 }
