@@ -27,21 +27,21 @@ $ npm install youtube-dl-exec --save
 ```js
 const youtubedl = require('youtube-dl-exec')
 
-youtubedl('https://example.com', {
+youtubedl('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
   dumpSingleJson: true,
   noWarnings: true,
   noCallHome: true,
   noCheckCertificate: true,
   preferFreeFormats: true,
   youtubeSkipDashManifest: true,
-  referer: 'https://example.com'
+  referer: 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
 }).then(output => console.log(output))
 ```
 
 It's equivalent to:
 
 ```bash
-$ youtube-dl https://example.com --dump-single-json --no-warnings --no-call-home --no-check-certificate --prefer-free-formats --youtube-skip-dash-manifest --referer=https://example.com
+$ youtube-dl 'https://www.youtube.com/watch?v=6xKWiCMKKJg' --dump-single-json --no-warnings --no-call-home --no-check-certificate --prefer-free-formats --youtube-skip-dash-manifest --referer=https://www.youtube.com/watch?v=6xKWiCMKKJg
 ```
 
 The library will use the latest `youtube-dl` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
@@ -87,7 +87,7 @@ Similar to main method but instead of a parsed output, it will return the intern
 const youtubedl = require('youtube-dl-exec')
 const fs = require('fs')
 
-const subprocess = youtubedl.raw('https://example.com', {
+const subprocess = youtubedl.raw('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
   dumpSingleJson: true
 })
 
