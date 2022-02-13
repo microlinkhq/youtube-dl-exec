@@ -3,7 +3,7 @@
 const dargs = require('dargs')
 const execa = require('execa')
 
-const constants = require('./constants');
+const constants = require('./constants')
 
 const args = (url, flags = {}) =>
   [].concat(url, dargs(flags, { useEquals: false })).filter(Boolean)
