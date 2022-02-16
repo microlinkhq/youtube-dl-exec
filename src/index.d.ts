@@ -11,7 +11,7 @@ declare module 'youtube-dl-exec' {
         height: number,
         quality: number,
         tbr: number,
-        vbr: number,
+        vbr?: number,
         url: string,
         width: number,
         ext: string,
