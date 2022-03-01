@@ -34,7 +34,7 @@
     "execa": "~5.1.0",
     "is-unix": "~2.0.1",
     "mkdirp": "~1.0.4",
-    "node-fetch": "~2.6.5"
+    "node-fetch": "~3.2.1"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
