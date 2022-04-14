@@ -4,8 +4,13 @@ const test = require('ava')
 
 const { args } = require('..')
 
-test('parse arguments into flags', async t => {
-  const flags = args('https://example', {
+test('no flags', t => {
+  const flags = args('https://example.com')
+  t.deepEqual(flags, ['https://example.com'])
+})
+
+test('parse arguments into flags', t => {
+  const flags = args('https://example.com', {
     noWarnings: true,
     noCallHome: true,
     noCheckCertificate: true,
@@ -17,7 +22,7 @@ test('parse arguments into flags', async t => {
   })
 
   t.deepEqual(flags, [
-    'https://example',
+    'https://example.com',
     '--no-warnings',
     '--no-call-home',
     '--no-check-certificate',
