@@ -31,3 +31,13 @@ test('parse arguments into flags', async t => {
     'googlebot'
   ])
 })
+
+test('undocumented "--no-" args are ignored', async t => {
+  const flags = args('https://example', {
+    ignoreErrors: false
+  })
+
+  t.deepEqual(flags, [
+    'https://example'
+  ])
+})
