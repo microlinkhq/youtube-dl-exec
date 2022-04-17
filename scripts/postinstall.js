@@ -22,9 +22,7 @@ const getBinary = async url => {
   const response = await fetch(url)
   const contentType = response.headers.get('content-type')
 
-  if (BINARY_CONTENT_TYPES.includes(contentType)) {
-    return response.buffer()
-  }
+  if (BINARY_CONTENT_TYPES.includes(contentType)) return response.buffer();
 
   const [{ assets }] = await response.json()
   const { browser_download_url: downloadUrl } = assets.find(
