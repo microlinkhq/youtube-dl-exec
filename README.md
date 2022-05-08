@@ -87,7 +87,7 @@ Similar to main method but instead of a parsed output, it will return the intern
 const youtubedl = require('youtube-dl-exec')
 const fs = require('fs')
 
-const subprocess = youtubedl.raw('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
+const subprocess = youtubedl.exec('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
   dumpSingleJson: true
 })
 
