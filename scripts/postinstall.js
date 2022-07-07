@@ -36,6 +36,6 @@ const getBinary = async url => {
 
 if (!YOUTUBE_DL_SKIP_DOWNLOAD) {
   Promise.all([getBinary(YOUTUBE_DL_HOST), mkdirp(YOUTUBE_DL_DIR)])
-    .then(([buffer]) => fs.writeFile(YOUTUBE_DL_PATH, buffer, { mode: 493 }))
+    .then(([buffer]) => fs.writeFile(YOUTUBE_DL_PATH, buffer, { mode: 502 }))
     .catch(err => console.error(err.message || err))
 }
