@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.0.14...v2.1.0) (2022-07-09)
+
+
+### Features
+
+* use yt-dlp ([6a09794](https://github.com/microlinkhq/youtube-dl-exec/commit/6a097940387e863f4d4f59171e4d99cb4e29932c))
+
 ### 2.0.14 (2022-07-09)
 
 ### 2.0.13 (2022-07-07)
