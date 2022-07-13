@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.1.2 (2022-07-13)
+
+
+### Bug Fixes
+
+* use node14 or above ([c8595bc](https://github.com/microlinkhq/youtube-dl-exec/commit/c8595bcaf4b68ef74c7c5ed8a7f385e4bdbe0435))
+
 ### 2.1.1 (2022-07-13)
 
 ## [2.1.0](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.0.14...v2.1.0) (2022-07-09)
