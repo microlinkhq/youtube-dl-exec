@@ -22,6 +22,8 @@
 $ npm install youtube-dl-exec --save
 ```
 
+Also, it requires Python 3.7 or above available in your system as `python3`. Otherwise, the library will throw an error.
+
 ## Usage
 
 ```js
