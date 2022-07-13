@@ -22,6 +22,12 @@
 $ npm install youtube-dl-exec --save
 ```
 
+Also, it requires Python 3.7 or above. You should to be sure it's reachable as `python`:
+
+```
+$ ln -s $(which python3) "$(dirname $(which python3))/python"
+```
+
 ## Usage
 
 ```js
