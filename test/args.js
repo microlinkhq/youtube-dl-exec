@@ -16,9 +16,8 @@ test('parse arguments into flags', t => {
     noCheckCertificate: true,
     preferFreeFormats: true,
     youtubeSkipDashManifest: true,
-    referer: 'https://example.com',
     carDir: '/tmp',
-    userAgent: 'googlebot'
+    addHeader: ['referer:example.com', 'user-agent:googlebot']
   })
 
   t.deepEqual(flags, [
@@ -28,11 +27,11 @@ test('parse arguments into flags', t => {
     '--no-check-certificate',
     '--prefer-free-formats',
     '--youtube-skip-dash-manifest',
-    '--referer',
-    'https://example.com',
     '--car-dir',
     '/tmp',
-    '--user-agent',
-    'googlebot'
+    '--add-header',
+    'referer:example.com',
+    '--add-header',
+    'user-agent:googlebot'
   ])
 })
