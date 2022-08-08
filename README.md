@@ -8,11 +8,11 @@
 [![Coverage Status](https://img.shields.io/coveralls/microlinkhq/youtube-dl-exec.svg?style=flat-square)](https://coveralls.io/github/microlinkhq/youtube-dl-exec)
 [![NPM Status](https://img.shields.io/npm/dm/youtube-dl-exec.svg?style=flat-square)](https://www.npmjs.org/package/youtube-dl-exec)
 
-> A simple Node.js wrapper for [youtube-dl](https://github.com/ytdl-org/youtube-dl).
+> A simple Node.js wrapper for [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 ## Why
 
-- Auto install the latest `youtube-dl` version available.
+- Auto install the latest `yt-dlp` version available.
 - Executes any command in an efficient way.
 - Promise & Stream interface support.
 
@@ -31,22 +31,24 @@ const youtubedl = require('youtube-dl-exec')
 
 youtubedl('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
   dumpSingleJson: true,
+  noCheckCertificates: true,
   noWarnings: true,
-  noCallHome: true,
-  noCheckCertificate: true,
   preferFreeFormats: true,
-  youtubeSkipDashManifest: true,
-  referer: 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
+  addHeader: [
+    'referer:youtube.com',
+    'user-agent:googlebot'
+  ]
+
 }).then(output => console.log(output))
 ```
 
 It's equivalent to:
 
 ```bash
-$ youtube-dl 'https://www.youtube.com/watch?v=6xKWiCMKKJg' --dump-single-json --no-warnings --no-call-home --no-check-certificate --prefer-free-formats --youtube-skip-dash-manifest --referer=https://www.youtube.com/watch?v=6xKWiCMKKJg
+$ ./bin/yt-dlp --dump-single-json --no-check-certificates --no-warnings --prefer-free-formats --add-header='user-agent:googlebot' --add-header='referer:youtube.com' 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
 ```
 
-The library will use the latest `youtube-dl` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
+The library will use the latest `yt-dlp` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
 
 Alternatively, you can specify your own binary path using [`.create`]():
 
@@ -62,7 +64,7 @@ You can combine it with [YOUTUBE_DL_SKIP_DOWNLOAD](#youtube_dl_skip_download). S
 
 ### youtubedl(url, [flags], [options])
 
-It execs any `youtube-dl` command, returning back the output.
+It execs any `yt-dlp` command, returning back the output.
 
 #### url
 
@@ -75,7 +77,7 @@ The URL to target.
 
 Type: `object`
 
-Any flag supported by `youtube-dl`.
+Any flag supported by `yt-dlp`.
 
 #### options
 
@@ -103,7 +105,7 @@ setTimeout(subprocess.cancel, 30000)
 
 ### youtubedl.create(binaryPath)
 
-It creates a `youtube-dl` using the `binaryPath` provided.
+It creates a `yt-dlp` using the `binaryPath` provided.
 
 ## Environment variables
 
@@ -111,13 +113,11 @@ The environment variables are taken into account when you perform a `npm install
 
 These environment variables can also be set through "npm config", for example `npm install --YOUTUBE_DL_HOST="Some URL"`, or store it in `.npmrc` file.
 
-They setup the download configuration for getting the `youtube-dl` binary file.
-
-These variables can be
+They setup the download configuration for getting the `yt-dlp` binary file.
 
 ### YOUTUBE_DL_HOST
 
-It determines the remote URL for getting the `youtube-dl` binary file.
+It determines the remote URL for getting the `yt-dlp` binary file.
 
 The default URL is [ytdl-org/youtube-dl latest release](https://github.com/ytdl-org/youtube-dl/releases/latest).
 
@@ -131,17 +131,17 @@ The default folder is `bin`.
 
 It determines the binary filename.
 
-The default binary file could be `youtube-dl` or `youtube-dl.exe`, depending of the [`YOUTUBE_DL_PLATFORM`](#youtube_dl_platform) value.
+The default binary file could be `yt-dlp` or `youtube-dl.exe`, depending of the [`YOUTUBE_DL_PLATFORM`](#youtube_dl_platform) value.
 
 ### YOUTUBE_DL_PLATFORM
 
-It determines the architecture of the machine that will use the `youtube-dl` binary.
+It determines the architecture of the machine that will use the `yt-dlp` binary.
 
 The default value will computed from `process.platform`, being `'unix'` or `'win32'`.
 
 ### YOUTUBE_DL_SKIP_DOWNLOAD
 
-When is present, it will skip the [postinstall](/scripts/postinstall.js) script for fetching the latest `youtube-dl` version.
+When is present, it will skip the [postinstall](/scripts/postinstall.js) script for fetching the latest `yt-dlp` version.
 
 That variable should be set before performing the installation command, such as:
 
