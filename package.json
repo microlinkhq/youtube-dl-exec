@@ -2,7 +2,7 @@
   "name": "youtube-dl-exec",
   "description": "A simple Node.js wrapper for youtube-dl",
   "homepage": "https://nicedoc.io/microlinkhq/youtube-dl-exec",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "main": "src/index.js",
   "author": {
     "email": "hello@microlink.io",
