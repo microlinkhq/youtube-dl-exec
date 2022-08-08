@@ -45,7 +45,14 @@ youtubedl('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
 It's equivalent to:
 
 ```bash
-$ ./bin/yt-dlp --dump-single-json --no-check-certificates --no-warnings --prefer-free-formats --add-header='user-agent:googlebot' --add-header='referer:youtube.com' 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
+$ ./bin/yt-dlp \
+  --dump-single-json \
+  --no-check-certificates \
+  --no-warnings \
+  --prefer-free-formats \
+  --add-header='user-agent:googlebot' \
+  --add-header='referer:youtube.com' \
+  'https://www.youtube.com/watch?v=6xKWiCMKKJg'
 ```
 
 The library will use the latest `yt-dlp` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
