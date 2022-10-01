@@ -195,7 +195,7 @@ declare module 'youtube-dl-exec' {
         printTraffic?: boolean,
         callHome?: boolean,
         encoding?: string,
-        noCheckCertificate?: boolean,
+        noCheckCertificates?: boolean,
         preferInsecure?: boolean,
         userAgent?: string,
         referer?: string,
