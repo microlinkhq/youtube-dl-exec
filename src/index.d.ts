@@ -199,7 +199,7 @@ declare module 'youtube-dl-exec' {
         preferInsecure?: boolean,
         userAgent?: string,
         referer?: string,
-        addHeader?: string,
+        addHeader?: string[],
         bidiWorkaround?: boolean,
         sleepInterval?: number,
         maxSleepInterval?: number,
