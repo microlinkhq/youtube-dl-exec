@@ -244,7 +244,7 @@ declare module 'youtube-dl-exec' {
         convertSubs?: string
     }
 
-    type YtdlExecFunction = (url: string, flags?: YtFlags, options?: Options<string>, test: string) => ExecaChildProcess;
+    type YtdlExecFunction = (url: string, flags?: YtFlags, options?: Options<string>) => ExecaChildProcess;
     type YtdlCreateFuncion = (binaryPath: string) => {
       (url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>,
       exec: YtdlExecFunction,
