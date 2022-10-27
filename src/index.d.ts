@@ -244,10 +244,15 @@ declare module 'youtube-dl-exec' {
         convertSubs?: string
     }
 
-    export default function(url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>;
-    export function exec(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
-    export function create(binaryPath?: string): {
-        (url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>;
-        exec(url: string, flags?: YtFlags, options?: Options<string>): ExecaChildProcess;
+    const youtubeDlExec: (
+      (url: string, flags?: YtFlags, options?: Options<string>) => Promise<YtResponse>
+    ) & {
+      exec: (url: string, flags?: YtFlags, options?: Options<string>) => ExecaChildProcess,
+      create: (binaryPath: string) => {
+        (url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>,
+        exec: (url: string, flags?: YtFlags, options?: Options<string>) => ExecaChildProcess,
+      }
     }
+
+    export default youtubeDlExec;
 }
