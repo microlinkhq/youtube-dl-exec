@@ -126,7 +126,7 @@ They setup the download configuration for getting the `yt-dlp` binary file.
 
 It determines the remote URL for getting the `yt-dlp` binary file.
 
-The default URL is [ytdl-org/youtube-dl latest release](https://github.com/ytdl-org/youtube-dl/releases/latest).
+The default URL is [yt-dlp/yt-dlp latest release](https://github.com/yt-dlp/yt-dlp/releases/latest).
 
 ### YOUTUBE_DL_DIR
 
