@@ -13,6 +13,7 @@ declare module 'youtube-dl-exec' {
         tbr: number,
         vbr?: number,
         url: string,
+      	manifest_url: string,
         width: number,
         ext: string,
         vcodec: string,
