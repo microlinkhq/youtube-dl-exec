@@ -33,8 +33,7 @@
     "dargs": "~7.0.0",
     "execa": "~5.1.0",
     "is-unix": "~2.0.1",
-    "mkdirp": "~1.0.4",
-    "node-fetch": "~2.6.5"
+    "simple-get": "~4.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
