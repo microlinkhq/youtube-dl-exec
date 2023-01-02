@@ -1,8 +1,22 @@
 'use strict'
 
-const fetch = require('node-fetch')
-const fs = require('fs').promises
-const mkdirp = require('mkdirp')
+const { writeFile, mkdir } = require('fs/promises')
+const { concat } = require('simple-get')
+
+const mkdirp = filepath => mkdir(filepath, { recursive: true }).catch(() => {})
+
+const get = url =>
+  new Promise((resolve, reject) =>
+    concat(
+      {
+        url,
+        headers: {
+          'user-agent': 'microlinkhq/youtube-dl-exec'
+        }
+      },
+      (err, response, data) => (err ? reject(err) : resolve({ response, data }))
+    )
+  )
 
 const BINARY_CONTENT_TYPES = [
   'binary/octet-stream',
@@ -19,23 +33,18 @@ const {
 } = require('../src/constants')
 
 const getBinary = async url => {
-  const response = await fetch(url)
-  const contentType = response.headers.get('content-type')
-
-  if (BINARY_CONTENT_TYPES.includes(contentType)) {
-    return response.buffer()
-  }
-
-  const [{ assets }] = await response.json()
+  const { response, data } = await get(url)
+  const contentType = response['content-type']
+  if (BINARY_CONTENT_TYPES.includes(contentType)) return data
+  const [{ assets }] = JSON.parse(data)
   const { browser_download_url: downloadUrl } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILE
   )
-
-  return fetch(downloadUrl).then(res => res.buffer())
+  return (await get(downloadUrl)).data
 }
 
 if (!YOUTUBE_DL_SKIP_DOWNLOAD) {
   Promise.all([getBinary(YOUTUBE_DL_HOST), mkdirp(YOUTUBE_DL_DIR)])
-    .then(([buffer]) => fs.writeFile(YOUTUBE_DL_PATH, buffer, { mode: 0o755 }))
+    .then(([buffer]) => writeFile(YOUTUBE_DL_PATH, buffer, { mode: 0o755 }))
     .catch(err => console.error(err.message || err))
 }
