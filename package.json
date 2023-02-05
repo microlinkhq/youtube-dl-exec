@@ -49,7 +49,6 @@
     "prettier-standard": "latest",
     "simple-git-hooks": "latest",
     "standard": "latest",
-    "standard-markdown": "latest",
     "standard-version": "latest"
   },
   "engines": {
@@ -63,7 +62,7 @@
     "clean": "rm -rf node_modules",
     "contributors": "(npx git-authors-cli && npx finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "standard-markdown README.md && standard",
+    "lint": "standard",
     "postinstall": "node scripts/postinstall.js",
     "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
     "preinstall": "npx bin-version-check-cli python3 \"> =3.7\" || npx bin-version-check-cli python \"> =3.7\"",
@@ -85,9 +84,6 @@
   "nano-staged": {
     "*.js,!*.min.js,": [
       "prettier-standard"
-    ],
-    "*.md": [
-      "standard-markdown"
     ],
     "package.json": [
       "finepack"
