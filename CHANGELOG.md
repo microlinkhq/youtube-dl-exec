@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.1.11...v2.2.0) (2023-02-05)
+
+
+### Features
+
+* normalize errors ([a630451](https://github.com/microlinkhq/youtube-dl-exec/commit/a630451a4282f6ed527db9140676f563e97ad284))
+
 ### 2.1.11 (2023-01-02)
 
 ### 2.1.10 (2022-11-17)
