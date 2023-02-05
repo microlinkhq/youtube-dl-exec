@@ -18,13 +18,17 @@
 
 ## Install
 
+> **Note**: It requires Python 3.7 or above available in your system as `python3`. Otherwise, the library will throw an error.
+
 ```bash
 $ npm install youtube-dl-exec --save
 ```
 
-Also, it requires Python 3.7 or above available in your system as `python3`. Otherwise, the library will throw an error.
+By default, the library will auto-install the latest `yt-dlp` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
 
 ## Usage
+
+Any `yt-dlp` flags is supported:
 
 ```js
 const youtubedl = require('youtube-dl-exec')
@@ -55,17 +59,35 @@ $ ./bin/yt-dlp \
   'https://www.youtube.com/watch?v=6xKWiCMKKJg'
 ```
 
-The library will use the latest `yt-dlp` available that will downloaded on [build](https://github.com/microlinkhq/youtube-dl-exec/blob/master/package.json#L70) time.
+Type `yt-dlp --help` for seeing all of them.
 
-Alternatively, you can specify your own binary path using [`.create`]():
+## Custom binary
+
+In case you need, you can specify your own binary path using [`.create`]():
 
 ```js
 const { create: createYoutubeDl } = require('youtube-dl-exec')
-
 const youtubedl = createYoutubeDl('/my/binary/path')
 ```
 
-You can combine it with [YOUTUBE_DL_SKIP_DOWNLOAD](#youtube_dl_skip_download). See [environment variables](#environment-variables) to know more.
+## Progress bar
+
+Since the library is returning a promise, you can use any library that makes a progress estimation taking a promise as input:
+
+```js
+const logger = require('progress-estimator')()
+const youtubedl = require('youtube-dl-exec')
+
+const url = 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
+const promise = youtubedl(url, { dumpSingleJson: true })
+const result = await logger(promise, `Obtaining ${url}`)
+
+console.log(result)
+```
+
+Alternatively, you can access to the subprocess to have more granular control. See [youtubedl.exec](https://github.com/microlinkhq/youtube-dl-exec#youtubedlexecurl-flags-options).
+
+Also, combine that with [YOUTUBE_DL_SKIP_DOWNLOAD](#youtube_dl_skip_download). See [environment variables](#environment-variables) to know more.
 
 ## API
 
@@ -92,7 +114,7 @@ Any option provided here will passed to [execa#options](https://github.com/sindr
 
 ### youtubedl.exec(url, [flags], [options])
 
-Similar to main method but instead of a parsed output, it will return the internal subprocess object
+Similar to main method but instead of a parsed output, it will return the internal subprocess object:
 
 ```js
 const youtubedl = require('youtube-dl-exec')

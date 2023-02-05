@@ -10,10 +10,14 @@ const args = (url, flags = {}) =>
 
 const isJSON = (str = '') => str.startsWith('{')
 
-const parse = ({ stdout }) => (isJSON(stdout) ? JSON.parse(stdout) : stdout)
+const parse = ({ stdout, stderr, ...details }) => {
+  if (!stderr) return isJSON(stdout) ? JSON.parse(stdout) : stdout
+  throw Object.assign(new Error(stderr), details)
+}
 
 const create = binaryPath => {
-  const fn = (url, flags, opts) => fn.exec(url, flags, opts).then(parse)
+  const fn = (url, flags, opts) =>
+    fn.exec(url, flags, opts).then(parse).catch(parse)
   fn.exec = (url, flags, opts) => execa(binaryPath, args(url, flags), opts)
   return fn
 }
