@@ -137,7 +137,7 @@
     "lint": "standard",
     "postinstall": "node scripts/postinstall.js",
     "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
-    "preinstall": "npx bin-version-check-cli python3 \"> =3.7\" || npx bin-version-check-cli python \"> =3.7\"",
+    "preinstall": "[[ -n \"${YOUTUBE_DL_SKIP_PYTHON_CHECK}\" ]] || (npx bin-version-check-cli python3 \"> =3.7\" || npx bin-version-check-cli python \"> =3.7\")",
     "prerelease": "npm run update:check",
     "pretest": "npm run lint",
     "release": "standard-version -a",
