@@ -144,12 +144,6 @@ These environment variables can also be set through "npm config", for example `n
 
 They setup the download configuration for getting the `yt-dlp` binary file.
 
-### YOUTUBE_DL_HOST
-
-It determines the remote URL for getting the `yt-dlp` binary file.
-
-The default URL is [yt-dlp/yt-dlp latest release](https://github.com/yt-dlp/yt-dlp/releases/latest).
-
 ### YOUTUBE_DL_DIR
 
 It determines the folder where to put the binary file.
@@ -161,6 +155,12 @@ The default folder is `bin`.
 It determines the binary filename.
 
 The default binary file could be `yt-dlp` or `youtube-dl.exe`, depending of the [`YOUTUBE_DL_PLATFORM`](#youtube_dl_platform) value.
+
+### YOUTUBE_DL_HOST
+
+It determines the remote URL for getting the `yt-dlp` binary file.
+
+The default URL is [yt-dlp/yt-dlp latest release](https://github.com/yt-dlp/yt-dlp/releases/latest).
 
 ### YOUTUBE_DL_PLATFORM
 
@@ -177,6 +177,10 @@ That variable should be set before performing the installation command, such as:
 ```bash
 YOUTUBE_DL_SKIP_DOWNLOAD=true npm install
 ```
+
+### YOUTUBE_DL_SKIP_PYTHON_CHECK
+
+When is present, it skip the python step on installation.
 
 ## License
 
