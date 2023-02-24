@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.3.0 (2023-02-24)
+
+
+### Features
+
+* add YOUTUBE_DL_SKIP_PYTHON_CHECK env ([#140](https://github.com/microlinkhq/youtube-dl-exec/issues/140)) ([588ce26](https://github.com/microlinkhq/youtube-dl-exec/commit/588ce2624ded9c696bb246142e7b5dca518ff636)), closes [#139](https://github.com/microlinkhq/youtube-dl-exec/issues/139)
+
 ### 2.2.3 (2023-02-05)
 
 ### 2.2.2 (2023-02-05)
