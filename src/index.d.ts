@@ -235,6 +235,7 @@ declare module 'youtube-dl-exec' {
     embedSubs?: boolean,
     embedThumbnail?: boolean,
     addMetadata?: boolean,
+    metadataFromTitle?: string,
     xattrs?: boolean,
     fixup?: string,
     preferAvconv?: boolean,
