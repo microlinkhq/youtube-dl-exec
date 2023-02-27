@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.3.1 (2023-02-27)
+
+
+### Bug Fixes
+
+* metadataFromFile is not supported ([6ee6f15](https://github.com/microlinkhq/youtube-dl-exec/commit/6ee6f15393a54e77069f85e414c1f28d4332bf43)), closes [#141](https://github.com/microlinkhq/youtube-dl-exec/issues/141)
+
 ## 2.3.0 (2023-02-24)
 
 
