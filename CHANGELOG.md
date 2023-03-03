@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.4.0 (2023-03-03)
+
+
+### Features
+
+* move preinstall command into a separate script ([#143](https://github.com/microlinkhq/youtube-dl-exec/issues/143)) ([54125f3](https://github.com/microlinkhq/youtube-dl-exec/commit/54125f32a105f7de16538e186ee1fc3f12144dc6))
+
 ### 2.3.1 (2023-02-27)
 
 
