@@ -18,12 +18,6 @@ const get = url =>
     )
   )
 
-const BINARY_CONTENT_TYPES = [
-  'binary/octet-stream',
-  'application/octet-stream',
-  'application/x-binary'
-]
-
 const {
   YOUTUBE_DL_PATH,
   YOUTUBE_DL_HOST,
@@ -32,15 +26,19 @@ const {
   YOUTUBE_DL_SKIP_DOWNLOAD
 } = require('../src/constants')
 
-const getBinary = async url => {
-  const { response, data } = await get(url)
-  const contentType = response['content-type']
-  if (BINARY_CONTENT_TYPES.includes(contentType)) return data
+const getLatest = data => {
   const [{ assets }] = JSON.parse(data)
-  const { browser_download_url: downloadUrl } = assets.find(
+  const { browser_download_url: url } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILE
   )
-  return (await get(downloadUrl)).data
+  return get(url).then(({ data }) => data)
+}
+
+const getBinary = async url => {
+  const { response, data } = await get(url)
+  return response.headers['content-type'] === 'application/octet-stream'
+    ? data
+    : getLatest(data)
 }
 
 if (!YOUTUBE_DL_SKIP_DOWNLOAD) {

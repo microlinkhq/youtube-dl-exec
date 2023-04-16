@@ -9,21 +9,21 @@ const PLATFORM_UNIX = 'unix'
 function get (key) {
   if (!key) return undefined
   return (
-    process.env[key] ||
-    process.env[`npm_config_${key.toLowerCase()}`] ||
+    process.env[key] ??
+    process.env[`npm_config_${key.toLowerCase()}`] ??
     process.env[`npm_config_${key.toUpperCase()}`]
   )
 }
 
 const YOUTUBE_DL_HOST =
-  get('YOUTUBE_DL_HOST') ||
+  get('YOUTUBE_DL_HOST') ??
   'https://api.github.com/repos/yt-dlp/yt-dlp/releases?per_page=1'
 
 const YOUTUBE_DL_DIR =
-  get('YOUTUBE_DL_DIR') || path.join(__dirname, '..', 'bin')
+  get('YOUTUBE_DL_DIR') ?? path.join(__dirname, '..', 'bin')
 
 const YOUTUBE_DL_PLATFORM =
-  get('YOUTUBE_DL_PLATFORM') || isUnix(process.platform)
+  get('YOUTUBE_DL_PLATFORM') ?? isUnix(process.platform)
     ? PLATFORM_UNIX
     : PLATFORM_WIN
 
