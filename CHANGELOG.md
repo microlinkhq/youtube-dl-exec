@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.1 (2023-04-16)
+
+
+### Bug Fixes
+
+* check for binary data ([35ac355](https://github.com/microlinkhq/youtube-dl-exec/commit/35ac355de8510b1d663b6f331270f6fd422444ce)), closes [#146](https://github.com/microlinkhq/youtube-dl-exec/issues/146)
+
 ## 2.4.0 (2023-03-03)
 
 
