@@ -6,6 +6,7 @@ npm-debug.log
 .node_history
 yarn.lock
 package-lock.json
+pnpm-lock.yaml
 
 ############################
 # tmp, editor & OS files
