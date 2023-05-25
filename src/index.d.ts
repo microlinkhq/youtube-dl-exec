@@ -229,6 +229,7 @@ declare module 'youtube-dl-exec' {
     audioFormat?: string,
     audioQuality?: number,
     recodeVideo?: string,
+    remuxVideo? : string,
     postprocessorArgs?: string,
     keepVideo?: boolean,
     noPostOverwrites?: boolean,
