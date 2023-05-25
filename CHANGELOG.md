@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.3 (2023-05-25)
+
+
+### Bug Fixes
+
+* add `remuxVideo` type ([#149](https://github.com/microlinkhq/youtube-dl-exec/issues/149)) ([e98af09](https://github.com/microlinkhq/youtube-dl-exec/commit/e98af09ba0e4bcaecec6341ff0ee20b47f917467))
+
 ### 2.4.2 (2023-05-13)
 
 ### 2.4.1 (2023-04-16)
