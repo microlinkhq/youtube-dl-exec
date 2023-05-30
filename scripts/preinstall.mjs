@@ -11,10 +11,10 @@ const pReflect = p =>
     .then(() => ({ isError: false }))
     .catch(error => ({ isError: true, error }))
 
-if (process.env.YOUTUBE_DL_SKIP_PYTHON_CHECK !== undefined) process.exit(0)
+if (process.env.YOUTUBE_DL_SKIP_PYTHON_CHECK !== undefined) process.exit()
 
 let result = await pReflect(binaryVersionCheck('python3', '>=3.7'))
-if (!result.isError) process.exit(0)
+if (!result.isError) process.exit()
 
 result = await pReflect(binaryVersionCheck('python', '>=3.7'))
 if (result.isError) throwError(result.error)
