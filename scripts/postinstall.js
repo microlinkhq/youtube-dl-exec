@@ -27,7 +27,7 @@ const {
 } = require('../src/constants')
 
 const getLatest = data => {
-  const [{ assets }] = JSON.parse(data)
+  const { assets } = JSON.parse(data)
   const { browser_download_url: url } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILE
   )
