@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.6 (2023-06-26)
+
+
+### Bug Fixes
+
+* update bin-version-check to remove security warnings ([#154](https://github.com/microlinkhq/youtube-dl-exec/issues/154)) ([8b1cae8](https://github.com/microlinkhq/youtube-dl-exec/commit/8b1cae8767f4d6120d8f135ffbcac6d4a74ab7be))
+
 ### 2.4.5 (2023-06-13)
 
 ### 2.4.4 (2023-05-30)
