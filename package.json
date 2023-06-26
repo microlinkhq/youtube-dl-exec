@@ -106,7 +106,7 @@
     "youtube-downloader"
   ],
   "dependencies": {
-    "bin-version-check": "~5.0.0",
+    "bin-version-check": "~5.1.0",
     "dargs": "~7.0.0",
     "execa": "~5.1.0",
     "is-unix": "~2.0.1",
