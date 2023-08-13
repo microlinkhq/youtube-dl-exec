@@ -2,7 +2,7 @@
 declare module 'youtube-dl-exec' {
   import { ExecaChildProcess, Options } from 'execa';
 
-  type YtFormat = {
+  export type YtFormat = {
     asr: number,
     filesize: number,
     format_id: string,
@@ -26,7 +26,7 @@ declare module 'youtube-dl-exec' {
     http_headers: unknown
   }
 
-  type YtThumbnail = {
+  export type YtThumbnail = {
     height: number,
     url: string,
     width: number,
@@ -34,7 +34,7 @@ declare module 'youtube-dl-exec' {
     id: string,
   }
 
-  type YtResponse = {
+  export type YtResponse = {
     id: string,
     title: string,
     formats: YtFormat[],
@@ -92,7 +92,7 @@ declare module 'youtube-dl-exec' {
     _filename: string
   }
 
-  type YtFlags = {
+  export type YtFlags = {
     help?: boolean,
     version?: boolean,
     update?: boolean,
@@ -246,8 +246,8 @@ declare module 'youtube-dl-exec' {
     convertSubs?: string
   }
 
-  type YtdlExecFunction = (url: string, flags?: YtFlags, options?: Options<string>) => ExecaChildProcess;
-  type YtdlCreateFuncion = (binaryPath: string) => {
+  export type YtdlExecFunction = (url: string, flags?: YtFlags, options?: Options<string>) => ExecaChildProcess;
+  export type YtdlCreateFuncion = (binaryPath: string) => {
     (url: string, flags?: YtFlags, options?: Options<string>): Promise<YtResponse>,
     exec: YtdlExecFunction,
   }
