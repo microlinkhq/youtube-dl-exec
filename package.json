@@ -116,7 +116,7 @@
   "dependencies": {
     "bin-version-check": "~5.1.0",
     "dargs": "~7.0.0",
-    "execa": "~5.1.0",
+    "execa": "~8.0.1",
     "is-unix": "~2.0.1",
     "simple-get": "~4.0.1"
   },
