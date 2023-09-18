@@ -12,7 +12,6 @@ test('no flags', t => {
 test('parse arguments into flags', t => {
   const flags = args('https://example.com', {
     noWarnings: true,
-    noCallHome: true,
     noCheckCertificate: true,
     preferFreeFormats: true,
     youtubeSkipDashManifest: true,
@@ -23,7 +22,6 @@ test('parse arguments into flags', t => {
   t.deepEqual(flags, [
     'https://example.com',
     '--no-warnings',
-    '--no-call-home',
     '--no-check-certificate',
     '--prefer-free-formats',
     '--youtube-skip-dash-manifest',

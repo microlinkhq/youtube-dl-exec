@@ -1,0 +1,25 @@
+name: cron
+
+on:
+  schedule:
+    # Cron job every day at 12:00
+    # https://crontab.guru/#0_12_*_*_*
+    - cron: '0 0 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          run_install: true
+      - name: Test
+        run: pnpm test
