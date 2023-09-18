@@ -4,10 +4,6 @@ const test = require('ava')
 
 const youtubedl = require('..')
 
-test('throw errors', async t => {
-  await t.throwsAsync(youtubedl(), { instanceOf: Error })
-})
-
 test('execute commands', async t => {
   const output = await youtubedl(
     'https://www.youtube.com/watch?v=2Z4m4lnjxkY',

@@ -4,6 +4,10 @@ const test = require('ava')
 
 const youtubedl = require('..')
 
+test('show help', async t => {
+  await t.throwsAsync(youtubedl(), { instanceOf: Error })
+})
+
 test('unsupported URLs', async t => {
   t.plan(4)
   const url = 'https://www.apple.com/homepod'
