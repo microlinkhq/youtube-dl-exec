@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.10](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.4.9...v2.4.10) (2023-09-18)
+
+
+### Bug Fixes
+
+* stdout can be 'null' ([#167](https://github.com/microlinkhq/youtube-dl-exec/issues/167)) ([92150fe](https://github.com/microlinkhq/youtube-dl-exec/commit/92150fe361fa022863d6bef4eeb5dc771e5b72e0))
+
 ### 2.4.9 (2023-09-18)
 
 ### 2.4.8 (2023-09-05)
