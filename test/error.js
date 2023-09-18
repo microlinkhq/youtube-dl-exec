@@ -9,7 +9,7 @@ test('show help', async t => {
 })
 
 test('unsupported URLs', async t => {
-  t.plan(4)
+  t.plan(6)
   const url = 'https://www.apple.com/homepod'
   try {
     await youtubedl(url, { dumpSingleJson: true, noWarnings: true })
@@ -20,6 +20,8 @@ test('unsupported URLs', async t => {
     )
     t.true(error instanceof Error)
     t.truthy(error.command)
+    t.truthy(error.stderr)
+    t.truthy(error.stdout)
     t.truthy(error.exitCode)
   }
 })

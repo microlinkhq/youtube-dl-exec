@@ -12,7 +12,7 @@ const isJSON = (str = '') => str.startsWith('{')
 
 const parse = ({ stdout, stderr, ...details }) => {
   if (stdout !== '' && stdout !== 'null') return isJSON(stdout) ? JSON.parse(stdout) : stdout
-  throw Object.assign(new Error(stderr), details)
+  throw Object.assign(new Error(stderr), { stderr, stdout }, details)
 }
 
 const create = binaryPath => {
