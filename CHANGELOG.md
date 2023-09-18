@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.4.12 (2023-09-18)
+
+
+### Bug Fixes
+
+* attach stdout/stderr to error object ([a1f41ec](https://github.com/microlinkhq/youtube-dl-exec/commit/a1f41ecfb7db462fa262c58e80431c61e9434e4f))
+
 ### 2.4.11 (2023-09-18)
 
 ### [2.4.10](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.4.9...v2.4.10) (2023-09-18)
