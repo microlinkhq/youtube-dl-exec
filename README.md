@@ -39,11 +39,7 @@ youtubedl('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
   noCheckCertificates: true,
   noWarnings: true,
   preferFreeFormats: true,
-  addHeader: [
-    'referer:youtube.com',
-    'user-agent:googlebot'
-  ]
-
+  addHeader: ['referer:youtube.com', 'user-agent:googlebot']
 }).then(output => console.log(output))
 ```
 
@@ -121,9 +117,12 @@ Similar to main method but instead of a parsed output, it will return the intern
 const youtubedl = require('youtube-dl-exec')
 const fs = require('fs')
 
-const subprocess = youtubedl.exec('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
-  dumpSingleJson: true
-})
+const subprocess = youtubedl.exec(
+  'https://www.youtube.com/watch?v=6xKWiCMKKJg',
+  {
+    dumpSingleJson: true
+  }
+)
 
 console.log(`Running subprocess as ${subprocess.pid}`)
 

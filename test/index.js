@@ -15,7 +15,7 @@ test('execute commands', async t => {
       dumpSingleJson: true,
       noCheckCertificates: true,
       noWarnings: true,
-      preferFreeFormats: true,
+      preferFreeFormats: true
     }
   )
   t.true(typeof output === 'object')
@@ -27,7 +27,7 @@ test('parse JSON automatically', async t => {
     {
       noCheckCertificates: true,
       noWarnings: true,
-      preferFreeFormats: true,
+      preferFreeFormats: true
     }
   )
   t.is(typeof output, 'string')

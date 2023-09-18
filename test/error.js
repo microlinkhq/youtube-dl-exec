@@ -24,8 +24,7 @@ test('video unavailable', async t => {
   t.plan(4)
   const url = 'https://www.youtube.com/watch?v=x8erEF_1POY'
   try {
-    await youtubedl(url, { dumpSingleJson: true,       noWarnings: true,
-    })
+    await youtubedl(url, { dumpSingleJson: true, noWarnings: true })
   } catch (error) {
     t.is(
       error.message,
