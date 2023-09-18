@@ -24,11 +24,12 @@ test('video unavailable', async t => {
   t.plan(4)
   const url = 'https://www.youtube.com/watch?v=x8erEF_1POY'
   try {
-    await youtubedl(url, { dumpSingleJson: true })
+    await youtubedl(url, { dumpSingleJson: true,       noWarnings: true,
+    })
   } catch (error) {
     t.is(
       error.message,
-      'ERROR: [youtube] x8erEF_1POY: Video unavailable. The uploader has not made this video available in your country'
+      'ERROR: [youtube] x8erEF_1POY: The uploader has not made this video available in your country'
     )
     t.true(error instanceof Error)
     t.truthy(error.command)

@@ -11,7 +11,7 @@ const args = (url, flags = {}) =>
 const isJSON = (str = '') => str.startsWith('{')
 
 const parse = ({ stdout, stderr, ...details }) => {
-  if (!stderr) return isJSON(stdout) ? JSON.parse(stdout) : stdout
+  if (stdout !== 'null') return isJSON(stdout) ? JSON.parse(stdout) : stdout
   throw Object.assign(new Error(stderr), details)
 }
 
