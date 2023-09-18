@@ -116,13 +116,14 @@
   "dependencies": {
     "bin-version-check": "~5.1.0",
     "dargs": "~7.0.0",
-    "execa": "~5.1.0",
+    "execa": "~5.1.1",
     "is-unix": "~2.0.1",
     "simple-get": "~4.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
+    "@ksmithut/prettier-standard": "latest",
     "ava": "latest",
     "c8": "latest",
     "ci-publish": "latest",
@@ -131,7 +132,6 @@
     "git-authors-cli": "latest",
     "nano-staged": "latest",
     "npm-check-updates": "latest",
-    "prettier-standard": "latest",
     "simple-git-hooks": "latest",
     "standard": "latest",
     "standard-version": "latest"
@@ -167,8 +167,9 @@
     ]
   },
   "nano-staged": {
-    "*.js,!*.min.js,": [
-      "prettier-standard"
+    "*.js,!*.min.js": [
+      "prettier-standard",
+      "standard --fix"
     ],
     "package.json": [
       "finepack"
