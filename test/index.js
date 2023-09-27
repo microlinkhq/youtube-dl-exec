@@ -23,7 +23,8 @@ test('parse JSON automatically', async t => {
     {
       noCheckCertificates: true,
       noWarnings: true,
-      preferFreeFormats: true
+      preferFreeFormats: true,
+      simulate: true
     }
   )
   t.is(typeof output, 'string')
