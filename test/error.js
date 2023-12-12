@@ -4,8 +4,9 @@ const test = require('ava')
 
 const youtubedl = require('..')
 
-test('show help', async t => {
-  await t.throwsAsync(youtubedl(), { instanceOf: Error })
+test('no url', async t => {
+  const error = await t.throwsAsync(youtubedl(''), { instanceOf: Error })
+  t.is(error.exitCode, 2)
 })
 
 test('unsupported URLs', async t => {
