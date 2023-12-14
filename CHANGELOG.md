@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.5.0 (2023-12-14)
+
+
+### Features
+
+* use tinyspawn ([#173](https://github.com/microlinkhq/youtube-dl-exec/issues/173)) ([c8eb5ba](https://github.com/microlinkhq/youtube-dl-exec/commit/c8eb5ba3c789d104814e76b11a209849c8b0422c))
+
 ### 2.4.18 (2023-12-12)
 
 ### 2.4.17 (2023-11-01)
