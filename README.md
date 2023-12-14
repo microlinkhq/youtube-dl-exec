@@ -107,7 +107,7 @@ Any flag supported by `yt-dlp`.
 
 #### options
 
-Any option provided here will passed to [execa#options](https://github.com/sindresorhus/execa#options).
+Any option provided here will passed to [spawn#options](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options).
 
 ### youtubedl.exec(url, [flags], [options])
 

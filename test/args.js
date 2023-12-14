@@ -5,12 +5,12 @@ const test = require('ava')
 const { args } = require('..')
 
 test('no flags', t => {
-  const flags = args('https://example.com')
-  t.deepEqual(flags, ['https://example.com'])
+  const flags = args()
+  t.deepEqual(flags, [])
 })
 
 test('parse arguments into flags', t => {
-  const flags = args('https://example.com', {
+  const flags = args({
     noWarnings: true,
     noCheckCertificate: true,
     preferFreeFormats: true,
@@ -20,7 +20,6 @@ test('parse arguments into flags', t => {
   })
 
   t.deepEqual(flags, [
-    'https://example.com',
     '--no-warnings',
     '--no-check-certificate',
     '--prefer-free-formats',
