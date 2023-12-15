@@ -16,8 +16,7 @@ const parse = ({ stdout, stderr, ...details }) => {
 }
 
 const create = binaryPath => {
-  const fn = (url, flags, opts) =>
-    fn.exec(url, flags, opts).then(parse).catch(parse)
+  const fn = (...args) => fn.exec(...args).then(parse).catch(parse)
   fn.exec = (url, flags, opts) => $(binaryPath, [url].concat(args(flags)), opts)
   return fn
 }
