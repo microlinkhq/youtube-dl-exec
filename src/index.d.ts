@@ -1,85 +1,85 @@
-import { SpawnOptions } from 'child_process';
+import { ChildProcess, SpawnOptions } from 'child_process';
 
 export type Payload = {
-  id:                     string;
-  title:                  string;
-  formats:                Format[];
-  thumbnails:             Thumbnail[];
-  thumbnail:              string;
-  description:            string;
-  channel_id:             string;
-  channel_url:            string;
-  duration:               number;
-  view_count:             number;
-  average_rating:         null;
-  age_limit:              number;
-  webpage_url:            string;
-  categories:             string[];
-  tags:                   string[];
-  playable_in_embed:      boolean;
-  live_status:            string;
-  release_timestamp:      null;
-  _format_sort_fields:    string[];
-  automatic_captions:     { [key: string]: AutomaticCaption[] };
-  subtitles:              any;
-  comment_count:          number | null;
-  chapters:               null;
-  heatmap:                Heatmap[] | null;
-  channel:                string;
+  id: string;
+  title: string;
+  formats: Format[];
+  thumbnails: Thumbnail[];
+  thumbnail: string;
+  description: string;
+  channel_id: string;
+  channel_url: string;
+  duration: number;
+  view_count: number;
+  average_rating: null;
+  age_limit: number;
+  webpage_url: string;
+  categories: string[];
+  tags: string[];
+  playable_in_embed: boolean;
+  live_status: string;
+  release_timestamp: null;
+  _format_sort_fields: string[];
+  automatic_captions: { [key: string]: AutomaticCaption[] };
+  subtitles: any;
+  comment_count: number | null;
+  chapters: null;
+  heatmap: Heatmap[] | null;
+  channel: string;
   channel_follower_count: number;
-  uploader:               string;
-  uploader_id:            string;
-  uploader_url:           string;
-  upload_date:            string;
-  availability:           string;
-  original_url:           string;
-  webpage_url_basename:   string;
-  webpage_url_domain:     string;
-  extractor:              string;
-  extractor_key:          string;
-  playlist:               null;
-  playlist_index:         null;
-  display_id:             string;
-  fulltitle:              string;
-  duration_string:        string;
-  is_live:                boolean;
-  was_live:               boolean;
-  requested_subtitles:    null;
-  _has_drm:               null;
-  epoch:                  number;
-  requested_downloads:    RequestedDownload[];
-  requested_formats:      Format[];
-  format:                 string;
-  format_id:              string;
-  ext:                    AudioEXTEnum;
-  protocol:               string;
-  language:               Language | null;
-  format_note:            string;
-  filesize_approx:        number;
-  tbr:                    number;
-  width:                  number;
-  height:                 number;
-  resolution:             string;
-  fps:                    number;
-  dynamic_range:          DynamicRange;
-  vcodec:                 string;
-  vbr:                    number;
-  stretched_ratio:        null;
-  aspect_ratio:           number;
-  acodec:                 Acodec;
-  abr:                    number;
-  asr:                    number;
-  audio_channels:         number;
-  _type:                  string;
-  _version:               Version;
-  channel_is_verified?:   boolean;
+  uploader: string;
+  uploader_id: string;
+  uploader_url: string;
+  upload_date: string;
+  availability: string;
+  original_url: string;
+  webpage_url_basename: string;
+  webpage_url_domain: string;
+  extractor: string;
+  extractor_key: string;
+  playlist: null;
+  playlist_index: null;
+  display_id: string;
+  fulltitle: string;
+  duration_string: string;
+  is_live: boolean;
+  was_live: boolean;
+  requested_subtitles: null;
+  _has_drm: null;
+  epoch: number;
+  requested_downloads: RequestedDownload[];
+  requested_formats: Format[];
+  format: string;
+  format_id: string;
+  ext: AudioEXTEnum;
+  protocol: string;
+  language: Language | null;
+  format_note: string;
+  filesize_approx: number;
+  tbr: number;
+  width: number;
+  height: number;
+  resolution: string;
+  fps: number;
+  dynamic_range: DynamicRange;
+  vcodec: string;
+  vbr: number;
+  stretched_ratio: null;
+  aspect_ratio: number;
+  acodec: Acodec;
+  abr: number;
+  asr: number;
+  audio_channels: number;
+  _type: string;
+  _version: Version;
+  channel_is_verified?: boolean;
 }
 
 export type Version = {
-  version:          string;
+  version: string;
   current_git_head: null;
   release_git_head: string;
-  repository:       string;
+  repository: string;
 }
 
 export enum Acodec {
@@ -90,8 +90,8 @@ export enum Acodec {
 }
 
 export type AutomaticCaption = {
-  ext:  AutomaticCaptionEXT;
-  url:  string;
+  ext: AutomaticCaptionEXT;
+  url: string;
   name: string;
 }
 
@@ -118,43 +118,43 @@ export enum AudioEXTEnum {
 }
 
 export type Format = {
-  format_id:            string;
-  format_note?:         FormatNote;
-  ext:                  AudioEXTEnum;
-  protocol:             Protocol;
-  acodec?:              Acodec;
-  vcodec:               string;
-  url:                  string;
-  width?:               number | null;
-  height?:              number | null;
-  fps?:                 number | null;
-  rows?:                number;
-  columns?:             number;
-  fragments?:           Fragment[];
-  resolution:           string;
-  aspect_ratio:         number | null;
-  http_headers:         HTTPHeaders;
-  audio_ext:            AudioEXTEnum;
-  video_ext:            AudioEXTEnum;
-  vbr:                  number | null;
-  abr:                  number | null;
-  tbr:                  number | null;
-  format:               string;
-  format_index?:        null;
-  manifest_url?:        string;
-  language?:            Language | null;
-  preference?:          number | null;
-  quality?:             number;
-  has_drm?:             boolean;
-  source_preference?:   number;
-  asr?:                 number | null;
-  filesize?:            number | null;
-  audio_channels?:      number | null;
+  format_id: string;
+  format_note?: FormatNote;
+  ext: AudioEXTEnum;
+  protocol: Protocol;
+  acodec?: Acodec;
+  vcodec: string;
+  url: string;
+  width?: number | null;
+  height?: number | null;
+  fps?: number | null;
+  rows?: number;
+  columns?: number;
+  fragments?: Fragment[];
+  resolution: string;
+  aspect_ratio: number | null;
+  http_headers: HTTPHeaders;
+  audio_ext: AudioEXTEnum;
+  video_ext: AudioEXTEnum;
+  vbr: number | null;
+  abr: number | null;
+  tbr: number | null;
+  format: string;
+  format_index?: null;
+  manifest_url?: string;
+  language?: Language | null;
+  preference?: number | null;
+  quality?: number;
+  has_drm?: boolean;
+  source_preference?: number;
+  asr?: number | null;
+  filesize?: number | null;
+  audio_channels?: number | null;
   language_preference?: number;
-  dynamic_range?:       DynamicRange | null;
-  container?:           Container;
-  downloader_options?:  DownloaderOptions;
-  filesize_approx?:     number;
+  dynamic_range?: DynamicRange | null;
+  container?: Container;
+  downloader_options?: DownloaderOptions;
+  filesize_approx?: number;
 }
 
 export enum Container {
@@ -181,7 +181,7 @@ export enum FormatNote {
 }
 
 export type Fragment = {
-  url:      string;
+  url: string;
   duration: number;
 }
 
@@ -197,43 +197,43 @@ export enum Protocol {
 
 export type Heatmap = {
   start_time: number;
-  end_time:   number;
-  value:      number;
+  end_time: number;
+  value: number;
 }
 
 export type RequestedDownload = {
-  requested_formats:        Format[];
-  format:                   string;
-  format_id:                string;
-  ext:                      AudioEXTEnum;
-  protocol:                 string;
-  format_note:              string;
-  filesize_approx:          number;
-  tbr:                      number;
-  width:                    number;
-  height:                   number;
-  resolution:               string;
-  fps:                      number;
-  dynamic_range:            DynamicRange;
-  vcodec:                   string;
-  vbr:                      number;
-  aspect_ratio:             number;
-  acodec:                   Acodec;
-  abr:                      number;
-  asr:                      number;
-  audio_channels:           number;
-  _filename:                string;
-  filename:                 string;
+  requested_formats: Format[];
+  format: string;
+  format_id: string;
+  ext: AudioEXTEnum;
+  protocol: string;
+  format_note: string;
+  filesize_approx: number;
+  tbr: number;
+  width: number;
+  height: number;
+  resolution: string;
+  fps: number;
+  dynamic_range: DynamicRange;
+  vcodec: string;
+  vbr: number;
+  aspect_ratio: number;
+  acodec: Acodec;
+  abr: number;
+  asr: number;
+  audio_channels: number;
+  _filename: string;
+  filename: string;
   __write_download_archive: boolean;
-  language?:                Language;
+  language?: Language;
 }
 
 export type Thumbnail = {
-  url:         string;
-  preference:  number;
-  id:          string;
-  height?:     number;
-  width?:      number;
+  url: string;
+  preference: number;
+  id: string;
+  height?: number;
+  width?: number;
   resolution?: string;
 }
 
@@ -391,5 +391,11 @@ export type Flags = {
   youtubeSkipDashManifest?: boolean
 }
 
+export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => ChildProcess
+export type Create = (binaryPath: string) => { (url: string, flags?: Flags, options?: SpawnOptions): Promise<Payload>; exec: Exec }
+export const youtubeDl: ((...args: Parameters<Exec>) => Promise<Payload>) & { exec: Exec, create: Create }
 
-export default function youtubeDl (url: string, flags?: Flags, options?: SpawnOptions): Promise<Payload>
+export function exec(...args: Parameters<Exec>): ReturnType<Exec>
+export function create(...args: Parameters<Create>): ReturnType<Create>
+
+export default youtubeDl
