@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.5.3 (2023-12-17)
+
+
+### Bug Fixes
+
+* **types:** expose exec & create methods ([#177](https://github.com/microlinkhq/youtube-dl-exec/issues/177)) ([d17ecb5](https://github.com/microlinkhq/youtube-dl-exec/commit/d17ecb57fcd8defce3769626d65bd1b6972d2f5a))
+
 ### 2.5.2 (2023-12-15)
 
 ### 2.5.1 (2023-12-15)
