@@ -119,7 +119,7 @@
     "dargs": "~7.0.0",
     "is-unix": "~2.0.10",
     "simple-get": "~4.0.1",
-    "tinyspawn": "~1.2.4"
+    "tinyspawn": "~1.2.6"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
