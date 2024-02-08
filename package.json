@@ -2,7 +2,7 @@
   "name": "youtube-dl-exec",
   "description": "A simple Node.js wrapper for youtube-dl",
   "homepage": "https://github.com/microlinkhq/youtube-dl-exec",
-  "version": "2.5.6",
+  "version": "2.5.7",
   "types": "src/index.d.ts",
   "main": "src/index.js",
   "author": {
