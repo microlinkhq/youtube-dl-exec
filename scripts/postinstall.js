@@ -13,8 +13,7 @@ const {
   YOUTUBE_DL_SKIP_DOWNLOAD
 } = require('../src/constants')
 
-const getLatest = data => {
-  const { assets } = data
+const getLatest = ({ assets }) => {
   const { browser_download_url: url } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILE
   )
