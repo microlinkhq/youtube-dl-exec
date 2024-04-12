@@ -1,22 +1,9 @@
 'use strict'
 
-const { writeFile, mkdir } = require('fs/promises')
-const { concat } = require('simple-get')
-
-const mkdirp = filepath => mkdir(filepath, { recursive: true }).catch(() => {})
-
-const get = url =>
-  new Promise((resolve, reject) =>
-    concat(
-      {
-        url,
-        headers: {
-          'user-agent': 'microlinkhq/youtube-dl-exec'
-        }
-      },
-      (err, response, data) => (err ? reject(err) : resolve({ response, data }))
-    )
-  )
+const debug = require('debug-logfmt')('youtube-dl-exec:install')
+const { mkdir, chmod } = require('node:fs/promises')
+const { pipeline } = require('node:stream/promises')
+const { createWriteStream } = require('node:fs')
 
 const {
   YOUTUBE_DL_PATH,
@@ -26,23 +13,31 @@ const {
   YOUTUBE_DL_SKIP_DOWNLOAD
 } = require('../src/constants')
 
-const getLatest = data => {
-  const { assets } = JSON.parse(data)
+const getLatest = ({ assets }) => {
   const { browser_download_url: url } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILE
   )
-  return get(url).then(({ data }) => data)
+  return fetch(url)
 }
 
 const getBinary = async url => {
-  const { response, data } = await get(url)
-  return response.headers['content-type'] === 'application/octet-stream'
-    ? data
-    : getLatest(data)
+  let response = await fetch(url)
+  if (response.headers.get('content-type') !== 'application/octet-stream') {
+    response = await getLatest(await response.json())
+  }
+  return response.body
 }
 
-if (!YOUTUBE_DL_SKIP_DOWNLOAD) {
-  Promise.all([getBinary(YOUTUBE_DL_HOST), mkdirp(YOUTUBE_DL_DIR)])
-    .then(([buffer]) => writeFile(YOUTUBE_DL_PATH, buffer, { mode: 0o755 }))
-    .catch(err => console.error(err.message || err))
+const installBinary = async () => {
+  debug('downloading', { url: YOUTUBE_DL_HOST })
+  const [binary] = await Promise.all([
+    getBinary(YOUTUBE_DL_HOST),
+    mkdir(YOUTUBE_DL_DIR, { recursive: true })
+  ])
+  debug('writing', { path: YOUTUBE_DL_PATH })
+  await pipeline(binary, createWriteStream(YOUTUBE_DL_PATH))
+  await chmod(YOUTUBE_DL_PATH, 0o755)
+  debug({ status: 'success' })
 }
+
+YOUTUBE_DL_SKIP_DOWNLOAD ? debug({ status: 'skipped' }) : installBinary()

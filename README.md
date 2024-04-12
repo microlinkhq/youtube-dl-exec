@@ -144,6 +144,10 @@ These environment variables can also be set through "npm config", for example `n
 
 They setup the download configuration for getting the `yt-dlp` binary file.
 
+### DEBUG
+
+Set `DEBUG="youtube-dl-exec*"` to enable debug mode. This will enable log additional information during the post-install script.
+
 ### YOUTUBE_DL_DIR
 
 It determines the folder where to put the binary file.
