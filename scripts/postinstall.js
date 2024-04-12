@@ -9,9 +9,7 @@ const { mkdir, chmod, rename } = require('node:fs/promises')
 
 const mkdirp = filepath => mkdir(filepath, { recursive: true })
 
-const log = (...args) =>
-  'npm_lifecycle_event' in process.env ||
-  console.log('[youtube-dl-exec]', ...args)
+const log = (...args) => console.log('[youtube-dl-exec]', ...args)
 
 const get = async url => {
   const response = await fetch(url, {
