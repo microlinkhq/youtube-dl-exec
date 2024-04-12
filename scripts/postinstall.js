@@ -6,8 +6,6 @@ const { pipeline } = require('node:stream/promises')
 const { createWriteStream } = require('node:fs')
 const { Readable } = require('node:stream')
 
-const mkdirp = filepath => mkdir(filepath, { recursive: true })
-
 const httpGet = async url =>
   fetch(url, {
     headers: {
@@ -43,7 +41,7 @@ const installBinary = async () => {
   debug('downloading', { url: YOUTUBE_DL_HOST })
   const [binary] = await Promise.all([
     getBinary(YOUTUBE_DL_HOST),
-    mkdirp(YOUTUBE_DL_DIR)
+    mkdir(YOUTUBE_DL_DIR, { recursive: true })
   ])
   await pipeline(binary, createWriteStream(YOUTUBE_DL_PATH))
   debug('writing', { path: YOUTUBE_DL_PATH })
