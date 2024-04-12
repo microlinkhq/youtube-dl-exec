@@ -4,14 +4,6 @@ const debug = require('debug-logfmt')('youtube-dl-exec:install')
 const { mkdir, chmod } = require('node:fs/promises')
 const { pipeline } = require('node:stream/promises')
 const { createWriteStream } = require('node:fs')
-const { Readable } = require('node:stream')
-
-const httpGet = async url =>
-  fetch(url, {
-    headers: {
-      'user-agent': 'microlinkhq/youtube-dl-exec'
-    }
-  })
 
 const {
   YOUTUBE_DL_PATH,
@@ -21,20 +13,20 @@ const {
   YOUTUBE_DL_SKIP_DOWNLOAD
 } = require('../src/constants')
 
-const getLatest = async data => {
+const getLatest = data => {
   const { assets } = data
   const { browser_download_url: url } = assets.find(
     ({ name }) => name === YOUTUBE_DL_FILE
   )
-  return httpGet(url)
+  return fetch(url)
 }
 
 const getBinary = async url => {
-  let response = await httpGet(url)
+  let response = await fetch(url)
   if (response.headers.get('content-type') !== 'application/octet-stream') {
     response = await getLatest(await response.json())
   }
-  return Readable.fromWeb(response.body)
+  return response.body
 }
 
 const installBinary = async () => {
