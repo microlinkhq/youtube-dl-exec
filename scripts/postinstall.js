@@ -77,7 +77,7 @@ const installBinary = async () => {
 
 const main = async () => {
   if (YOUTUBE_DL_SKIP_DOWNLOAD) {
-    return log('Skipping youtube-dl binary download')
+    return log('Skipping `youtube-dl` binary download')
   }
 
   try {
