@@ -34,8 +34,8 @@ const installBinary = async () => {
     getBinary(YOUTUBE_DL_HOST),
     mkdir(YOUTUBE_DL_DIR, { recursive: true })
   ])
-  await pipeline(binary, createWriteStream(YOUTUBE_DL_PATH))
   debug('writing', { path: YOUTUBE_DL_PATH })
+  await pipeline(binary, createWriteStream(YOUTUBE_DL_PATH))
   await chmod(YOUTUBE_DL_PATH, 0o755)
   debug({ status: 'success' })
 }
