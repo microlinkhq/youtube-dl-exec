@@ -119,7 +119,6 @@
     "dargs": "~7.0.0",
     "debug-logfmt": "~1.2.2",
     "is-unix": "~2.0.10",
-    "simple-get": "~4.0.1",
     "tinyspawn": "~1.2.6"
   },
   "devDependencies": {
