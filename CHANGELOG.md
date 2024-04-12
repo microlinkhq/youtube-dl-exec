@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.5.8...v3.0.0) (2024-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* rewrite the postinstall script (#192)
+
+### Features
+
+* rewrite the postinstall script ([#192](https://github.com/microlinkhq/youtube-dl-exec/issues/192)) ([0d69f1a](https://github.com/microlinkhq/youtube-dl-exec/commit/0d69f1a0d1a8b8b9c2b80e2aeef47ff050230afb))
+
 ### 2.5.8 (2024-04-03)
 
 ### 2.5.7 (2024-02-08)
