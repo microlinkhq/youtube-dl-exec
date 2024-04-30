@@ -123,7 +123,7 @@
     "dargs": "~7.0.0",
     "debug-logfmt": "~1.2.2",
     "is-unix": "~2.0.10",
-    "tinyspawn": "~1.2.6"
+    "tinyspawn": "~1.2.9"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
@@ -170,7 +170,12 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ]
+    ],
+    "rules": {
+      "body-max-length": [
+        0
+      ]
+    }
   },
   "nano-staged": {
     "*.js": [
