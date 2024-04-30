@@ -86,6 +86,34 @@ Alternatively, you can access to the subprocess to have more granular control. S
 
 Also, combine that with [YOUTUBE_DL_SKIP_DOWNLOAD](#youtube_dl_skip_download). See [environment variables](#environment-variables) to know more.
 
+## Timeout & cancellation
+
+You can customize [spawn#options](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options) by passing a third argument:
+
+```js
+const url = 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
+const result = await youtubedl.exec(url, ,{ dumpSingleJson: true }, {
+  timeout: 5000,
+  killSignal: 'SIGKILL'
+})
+
+console.log(result)
+```
+
+You can also interact with the subprocess programmatically:
+
+```js
+const url = 'https://www.youtube.com/watch?v=6xKWiCMKKJg'
+const subprocess = youtubedl.exec(url, { dumpSingleJson: true })
+
+setTimeout(() => {
+  subprocess.kill('SIGKILL')
+}, 5000)
+
+const result = await subprocess
+console.log(result)
+```
+
 ## API
 
 ### youtubedl(url, [flags], [options])
