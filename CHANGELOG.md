@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.2 (2024-05-07)
+
 ### 3.0.1 (2024-05-02)
 
 ## [3.0.0](https://github.com/microlinkhq/youtube-dl-exec/compare/v2.5.8...v3.0.0) (2024-04-12)
