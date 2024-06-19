@@ -10,8 +10,15 @@ await youtubedl('https://www.youtube.com/watch?v=6xKWiCMKKJg', {
   addHeader: ['referer:youtube.com', 'user-agent:googlebot']
 })
 
-youtubedl.exec('https://www.youtube.com/watch?v=6xKWiCMKKJg')
-youtubedl.exec('https://www.youtube.com/watch?v=6xKWiCMKKJg', { dumpSingleJson: true })
-youtubedl.exec('https://www.youtube.com/watch?v=6xKWiCMKKJg', { dumpSingleJson: true }, { shell: true, killSignal: 'SIGKILL', timeout: 3000 })
+/* exec */
 
-youtubedl.create('mypath')
+const promise = youtubedl.exec('https://www.youtube.com/watch?v=6xKWiCMKKJg')
+
+promise.kill()
+promise.ref()
+promise.unref()
+
+const result = await promise
+
+console.log(result.stdout)
+console.log(result.stderr)
