@@ -1,4 +1,5 @@
-import { ChildProcess, SpawnOptions } from 'child_process';
+import { SpawnOptions } from 'child_process';
+import { SubprocessPromise } from 'tinyspawn';
 
 export type Payload = {
   id: string;
@@ -391,7 +392,7 @@ export type Flags = {
   youtubeSkipDashManifest?: boolean
 }
 
-export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => ChildProcess
+export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => SubprocessPromise
 export type Create = (binaryPath: string) => { (url: string, flags?: Flags, options?: SpawnOptions): Promise<Payload>; exec: Exec }
 export const youtubeDl: ((...args: Parameters<Exec>) => Promise<Payload>) & { exec: Exec, create: Create }
 
