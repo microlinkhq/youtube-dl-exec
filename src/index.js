@@ -21,7 +21,10 @@ const create = binaryPath => {
   return fn
 }
 
-module.exports = create(constants.YOUTUBE_DL_PATH)
+const defaultInstance = create(constants.YOUTUBE_DL_PATH)
+
+module.exports = defaultInstance
+module.exports.youtubeDl = defaultInstance
 module.exports.create = create
 module.exports.args = args
 module.exports.isJSON = isJSON
