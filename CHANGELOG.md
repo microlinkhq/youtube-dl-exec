@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.5 (2024-06-24)
+
+
+### Bug Fixes
+
+* catch ENOENT ([#200](https://github.com/microlinkhq/youtube-dl-exec/issues/200)) ([215a4c7](https://github.com/microlinkhq/youtube-dl-exec/commit/215a4c75d29302f17f47608c13823fe2e85c0d02))
+
 ### 3.0.4 (2024-06-22)
 
 ### 3.0.3 (2024-06-19)
