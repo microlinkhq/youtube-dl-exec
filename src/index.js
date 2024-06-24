@@ -5,13 +5,14 @@ const $ = require('tinyspawn')
 
 const constants = require('./constants')
 
-const args = (flags = {}) =>
-  dargs(flags, { useEquals: false }).filter(Boolean)
+const args = (flags = {}) => dargs(flags, { useEquals: false }).filter(Boolean)
 
 const isJSON = (str = '') => str.startsWith('{')
 
 const parse = ({ stdout, stderr, ...details }) => {
-  if (stdout !== '' && stdout !== 'null') return isJSON(stdout) ? JSON.parse(stdout) : stdout
+  if (stdout !== undefined && stdout !== '' && stdout !== 'null') {
+    return isJSON(stdout) ? JSON.parse(stdout) : stdout
+  }
   throw Object.assign(new Error(stderr), { stderr, stdout }, details)
 }
 

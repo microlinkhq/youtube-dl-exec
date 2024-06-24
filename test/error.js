@@ -1,8 +1,20 @@
 'use strict'
 
+const { rename } = require('fs/promises')
+const path = require('path')
 const test = require('ava')
 
 const youtubedl = require('..')
+
+test.serial('catch errors', async t => {
+  await rename(path.resolve('bin/yt-dlp'), path.resolve('bin/_yt-dlp'))
+  t.teardown(() =>
+    rename(path.resolve('bin/_yt-dlp'), path.resolve('bin/yt-dlp'))
+  )
+  const error = await t.throwsAsync(youtubedl(''), { instanceOf: Error })
+  t.is(error.errno, -2)
+  t.is(error.code, 'ENOENT')
+})
 
 test('no url', async t => {
   const error = await t.throwsAsync(youtubedl(''), { instanceOf: Error })
