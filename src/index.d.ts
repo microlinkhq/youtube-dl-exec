@@ -268,6 +268,7 @@ export type Flags = {
   datebefore?: string
   defaultSearch?: string
   downloadArchive?: string
+  downloadSections?: string
   dumpJson?: boolean
   dumpPages?: boolean
   dumpSingleJson?: boolean
@@ -286,6 +287,7 @@ export type Flags = {
   forceGenericExtractor?: boolean
   forceIpv4?: boolean
   forceIpv6?: boolean
+  forceKeyframesAtCuts?: boolean
   format?: string
   geoBypass?: boolean
   geoBypassCountry?: string
