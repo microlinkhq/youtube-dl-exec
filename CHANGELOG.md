@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.6 (2024-06-27)
+
+
+### Bug Fixes
+
+* add missing types ([#201](https://github.com/microlinkhq/youtube-dl-exec/issues/201)) ([fc125fb](https://github.com/microlinkhq/youtube-dl-exec/commit/fc125fb94c1cadd8f960c535c27a32da868c1a45))
+
 ### 3.0.5 (2024-06-24)
 
 
