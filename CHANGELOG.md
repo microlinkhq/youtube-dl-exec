@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.7 (2024-07-21)
+
+
+### Bug Fixes
+
+* npm duplicate image ([#205](https://github.com/microlinkhq/youtube-dl-exec/issues/205)) ([253f483](https://github.com/microlinkhq/youtube-dl-exec/commit/253f48393d2432e6b104b94819db0b89331abada))
+
 ### 3.0.6 (2024-06-27)
 
 
