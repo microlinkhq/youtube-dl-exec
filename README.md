@@ -1,9 +1,8 @@
-<div align="center">
-  <img src="https://github.com/microlinkhq/cdn/raw/master/dist/logo/banner.png#gh-light-mode-only" alt="microlink cdn">
-  <img src="https://github.com/microlinkhq/cdn/raw/master/dist/logo/banner-dark.png#gh-dark-mode-only" alt="microlink cdn">
-  <br>
-  <br>
-</div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/microlinkhq/cdn/raw/master/dist/logo/banner-dark.png">
+  <img alt="microlink cdn" src="https://github.com/microlinkhq/cdn/raw/master/dist/logo/banner.png" align="center">
+</picture>
+&nbsp;
 
 ![Last version](https://img.shields.io/github/tag/microlinkhq/youtube-dl-exec.svg?style=flat-square)
 [![Coverage Status](https://img.shields.io/coveralls/microlinkhq/youtube-dl-exec.svg?style=flat-square)](https://coveralls.io/github/microlinkhq/youtube-dl-exec)
