@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.8](https://github.com/microlinkhq/youtube-dl-exec/compare/v3.0.7...v3.0.8) (2024-09-11)
+
+
+### Bug Fixes
+
+* add FormatSort type ([#209](https://github.com/microlinkhq/youtube-dl-exec/issues/209)) ([d29d75a](https://github.com/microlinkhq/youtube-dl-exec/commit/d29d75a379038dd5ae2fe54a4b6b0da76ae41ca1))
+
 ### 3.0.7 (2024-07-21)
 
 
