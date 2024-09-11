@@ -237,7 +237,35 @@ export type Thumbnail = {
   width?: number;
   resolution?: string;
 }
-
+export type OptionFormatSort =
+  | "hasvid"
+  | "hasaud"
+  | "ie_pref"
+  | "lang"
+  | "quality"
+  | "source"
+  | "proto"
+  | "vcodec"
+  | "acodec"
+  | "codec"
+  | "vext"
+  | "aext"
+  | "ext"
+  | "filesize"
+  | "fs_approx"
+  | "size"
+  | "height"
+  | "width"
+  | "res"
+  | "fps"
+  | "hdr"
+  | "channels"
+  | "tbr"
+  | "vbr"
+  | "abr"
+  | "br"
+  | "asr";
+export type OptionFormatSortPlus = OptionFormatSort | `+${OptionFormatSort}`
 export type Flags = {
   abortOnError?: boolean
   abortOnUnavailableFragment?: boolean
@@ -289,6 +317,7 @@ export type Flags = {
   forceIpv6?: boolean
   forceKeyframesAtCuts?: boolean
   format?: string
+  formatSort?: OptionFormatSortPlus[]
   geoBypass?: boolean
   geoBypassCountry?: string
   geoBypassIpBlock?: string
