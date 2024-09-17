@@ -425,7 +425,7 @@ export type Flags = {
 
 export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => SubprocessPromise
 export type Create = (binaryPath: string) => { (url: string, flags?: Flags, options?: SpawnOptions): Promise<Payload>; exec: Exec }
-export const youtubeDl: ((...args: Parameters<Exec>) => Promise<Payload>) & { exec: Exec, create: Create }
+export const youtubeDl: ((...args: Parameters<Exec>) => Promise<Payload | string>) & { exec: Exec, create: Create }
 
 export function exec(...args: Parameters<Exec>): ReturnType<Exec>
 export function create(...args: Parameters<Create>): ReturnType<Create>
