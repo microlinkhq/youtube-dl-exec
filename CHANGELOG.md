@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.9](https://github.com/microlinkhq/youtube-dl-exec/compare/v3.0.8...v3.0.9) (2024-09-17)
+
+
+### Bug Fixes
+
+* **types:** fix return type of youtubeDl function ([#211](https://github.com/microlinkhq/youtube-dl-exec/issues/211)) ([dcfa0d0](https://github.com/microlinkhq/youtube-dl-exec/commit/dcfa0d0cc9a8e5e9274fd72419b5cdd0f1a5a8f5))
+
 ### [3.0.8](https://github.com/microlinkhq/youtube-dl-exec/compare/v3.0.7...v3.0.8) (2024-09-11)
 
 
