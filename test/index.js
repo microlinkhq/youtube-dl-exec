@@ -4,7 +4,9 @@ const test = require('ava')
 
 const youtubedl = require('..')
 
-test('execute commands', async t => {
+const isCI = !!process.env.CI
+
+;(isCI ? test.skip : test)('execute commands', async t => {
   const output = await youtubedl(
     'https://www.youtube.com/watch?v=2Z4m4lnjxkY',
     {
@@ -16,8 +18,7 @@ test('execute commands', async t => {
   )
   t.true(typeof output === 'object')
 })
-
-test('parse JSON automatically', async t => {
+;(isCI ? test.skip : test)('parse JSON automatically', async t => {
   const output = await youtubedl(
     'https://www.youtube.com/watch?v=tu3Db9onH6k',
     {
