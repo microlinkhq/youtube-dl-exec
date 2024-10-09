@@ -23,7 +23,12 @@ const getLatest = ({ assets }) => {
 const getBinary = async url => {
   let response = await fetch(url)
   if (response.headers.get('content-type') !== 'application/octet-stream') {
-    response = await getLatest(await response.json())
+    const json = await response.json()
+    if(!json.assets) {
+      if(json.message) throw new Error(json.message);
+      else throw new Error("Couldn't reach GitHub servers for the latest yt-dlp version. Please try again later");
+    }
+    response = await getLatest(json)
   }
   return response.body
 }
