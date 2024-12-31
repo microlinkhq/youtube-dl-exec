@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.12 (2024-12-31)
+
+
+### Bug Fixes
+
+* catch unsupported format errors ([5e8d2cd](https://github.com/microlinkhq/youtube-dl-exec/commit/5e8d2cd1f37f234403978eb304cb74589f93246f))
+
 ### 3.0.11 (2024-12-30)
 
 ### 3.0.10 (2024-09-30)
