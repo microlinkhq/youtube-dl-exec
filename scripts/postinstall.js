@@ -22,9 +22,19 @@ const getLatest = ({ assets }) => {
 
 const getBinary = async url => {
   let response = await fetch(url)
-  if (response.headers.get('content-type') !== 'application/octet-stream') {
-    response = await getLatest(await response.json())
+  let payload
+
+  try {
+    if (response.headers.get('content-type') !== 'application/octet-stream') {
+      const payload = await response.json()
+      response = await getLatest(payload)
+    }
+  } catch (error) {
+    console.error('Failed to fetch latest release')
+    console.error({ url, status: response.status, payload })
+    throw error
   }
+
   return response.body
 }
 
