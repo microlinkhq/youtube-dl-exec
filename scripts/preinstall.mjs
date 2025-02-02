@@ -13,8 +13,8 @@ const pReflect = p =>
 
 if (process.env.YOUTUBE_DL_SKIP_PYTHON_CHECK !== undefined) process.exit()
 
-let result = await pReflect(binaryVersionCheck('python3', '>=3.7'))
+let result = await pReflect(binaryVersionCheck('python3', '>=3.9'))
 if (!result.isError) process.exit()
 
-result = await pReflect(binaryVersionCheck('python', '>=3.7'))
+result = await pReflect(binaryVersionCheck('python', '>=3.9'))
 if (result.isError) throwError(result.error)
