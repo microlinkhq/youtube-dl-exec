@@ -143,7 +143,7 @@
     "youtube-downloader"
   ],
   "dependencies": {
-    "bin-version-check": "~6.0.0",
+    "binary-version-check": "~6.1.0",
     "dargs": "~7.0.0",
     "debug-logfmt": "~1.2.2",
     "is-unix": "~2.0.10",
