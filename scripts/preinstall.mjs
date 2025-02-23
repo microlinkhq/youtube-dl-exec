@@ -1,4 +1,4 @@
-import binaryVersionCheck from 'bin-version-check'
+import binaryVersionCheck from 'binary-version-check'
 
 const throwError = error => {
   throw new Error(
