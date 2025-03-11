@@ -6,28 +6,19 @@ const path = require('path')
 const PLATFORM_WIN = 'win32'
 const PLATFORM_UNIX = 'unix'
 
-function get (key) {
-  if (!key) return undefined
-  return (
-    process.env[key] ??
-    process.env[`npm_config_${key.toLowerCase()}`] ??
-    process.env[`npm_config_${key.toUpperCase()}`]
-  )
-}
-
 const YOUTUBE_DL_HOST =
-  get('YOUTUBE_DL_HOST') ??
+  process.env.YOUTUBE_DL_HOST ??
   'https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest'
 
 const YOUTUBE_DL_DIR =
-  get('YOUTUBE_DL_DIR') ?? path.join(__dirname, '..', 'bin')
+  process.env.YOUTUBE_DL_DIR ?? path.join(__dirname, '..', 'bin')
 
 const YOUTUBE_DL_PLATFORM =
-  get('YOUTUBE_DL_PLATFORM') ?? isUnix(process.platform)
+  process.env.YOUTUBE_DL_PLATFORM ?? isUnix(process.platform)
     ? PLATFORM_UNIX
     : PLATFORM_WIN
 
-const YOUTUBE_DL_FILENAME = get('YOUTUBE_DL_FILENAME') || 'yt-dlp'
+const YOUTUBE_DL_FILENAME = process.env.YOUTUBE_DL_FILENAME || 'yt-dlp'
 
 const YOUTUBE_DL_FILE =
   !YOUTUBE_DL_FILENAME.endsWith('.exe') && YOUTUBE_DL_PLATFORM === 'win32'
@@ -36,9 +27,12 @@ const YOUTUBE_DL_FILE =
 
 const YOUTUBE_DL_PATH = path.join(YOUTUBE_DL_DIR, YOUTUBE_DL_FILE)
 
-const YOUTUBE_DL_SKIP_DOWNLOAD = get('YOUTUBE_DL_SKIP_DOWNLOAD')
+const YOUTUBE_DL_SKIP_DOWNLOAD = process.env.YOUTUBE_DL_SKIP_DOWNLOAD
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
 
 module.exports = {
+  GITHUB_TOKEN,
   YOUTUBE_DL_DIR,
   YOUTUBE_DL_FILE,
   YOUTUBE_DL_FILENAME,

@@ -6,6 +6,7 @@ const { pipeline } = require('node:stream/promises')
 const { createWriteStream } = require('node:fs')
 
 const {
+  GITHUB_TOKEN,
   YOUTUBE_DL_PATH,
   YOUTUBE_DL_HOST,
   YOUTUBE_DL_DIR,
@@ -21,7 +22,10 @@ const getLatest = ({ assets }) => {
 }
 
 const getBinary = async url => {
-  let response = await fetch(url)
+  const headers = GITHUB_TOKEN
+    ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
+    : {}
+  let response = await fetch(url, headers)
 
   if (
     response.headers.get('content-type').includes('application/octet-stream')

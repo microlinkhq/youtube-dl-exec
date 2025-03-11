@@ -165,11 +165,9 @@ It creates a `yt-dlp` using the `binaryPath` provided.
 
 ## Environment variables
 
-The environment variables are taken into account when you perform a `npm install` in a project that contains `youtube-dl-exec` dependency.
+The environment variables are used to customize the [postinstall script](https://github.com/microlinkhq/youtube-dl-exec/blob/master/scripts/postinstall.js) behavior that will be triggered after `npm install` is performed.
 
-These environment variables can also be set through "npm config", for example `npm install --YOUTUBE_DL_HOST="Some URL"`, or store it in `.npmrc` file.
-
-They setup the download configuration for getting the `yt-dlp` binary file.
+This is mostly for backward compatibility or debugging purposes. You don't need to do anything by default.
 
 ### DEBUG
 
