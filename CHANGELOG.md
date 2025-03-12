@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.17](https://github.com/microlinkhq/youtube-dl-exec/compare/v3.0.16...v3.0.17) (2025-03-12)
+
 ### 3.0.16 (2025-02-23)
 
 ### 3.0.15 (2025-02-02)
