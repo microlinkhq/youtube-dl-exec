@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.18 (2025-03-13)
+
+
+### Bug Fixes
+
+* typecheck condition ([f59e10d](https://github.com/microlinkhq/youtube-dl-exec/commit/f59e10debf9a0d8b8bdd31850c4de99d449c7632))
+
 ### [3.0.17](https://github.com/microlinkhq/youtube-dl-exec/compare/v3.0.16...v3.0.17) (2025-03-12)
 
 ### 3.0.16 (2025-02-23)
