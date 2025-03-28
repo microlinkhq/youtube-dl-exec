@@ -151,7 +151,7 @@
     "dargs": "~7.0.0",
     "debug-logfmt": "~1.2.2",
     "is-unix": "~2.0.10",
-    "tinyspawn": "~1.4.0"
+    "tinyspawn": "~1.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
