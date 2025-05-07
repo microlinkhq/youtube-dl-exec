@@ -316,6 +316,7 @@ export type Flags = {
   forceIpv4?: boolean
   forceIpv6?: boolean
   forceKeyframesAtCuts?: boolean
+  forceOverwrites?: boolean
   format?: string
   formatSort?: OptionFormatSortPlus[]
   geoBypass?: boolean
@@ -373,6 +374,7 @@ export type Flags = {
   output?: string
   outputNaPlaceholder?: string
   password?: string
+  paths?: string
   playlistEnd?: number | 'last'
   playlistItems?: string
   playlistRandom?: boolean
@@ -402,6 +404,7 @@ export type Flags = {
   sourceAddress?: string
   subFormat?: string
   subLang?: string
+  trimFilenames?: number
   twofactor?: string
   update?: boolean
   userAgent?: string
@@ -409,6 +412,7 @@ export type Flags = {
   verbose?: boolean
   version?: boolean
   videoPassword?: string
+  windowsFilenames?: boolean
   writeAllThumbnails?: boolean
   writeAnnotations?: boolean
   writeAutoSub?: boolean
