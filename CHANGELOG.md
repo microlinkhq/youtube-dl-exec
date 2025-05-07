@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.21 (2025-05-07)
+
+
+### Bug Fixes
+
+* update filesystem flags ([#239](https://github.com/microlinkhq/youtube-dl-exec/issues/239)) ([9788862](https://github.com/microlinkhq/youtube-dl-exec/commit/978886262242638bf1dac958bb32b215dc84563c))
+
 ### 3.0.20 (2025-03-28)
 
 ### 3.0.19 (2025-03-14)
