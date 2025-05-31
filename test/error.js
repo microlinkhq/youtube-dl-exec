@@ -73,7 +73,11 @@ test('video unavailable', async t => {
   } catch (error) {
     t.is(
       error.message,
-      'ERROR: [youtube] x8erEF_1POY: Video unavailable. The uploader has not made this video available in your country'
+      [
+        'ERROR: [youtube] x8erEF_1POY: The uploader has not made this video available in your country',
+        'This video is available in United Kingdom, Guernsey, Isle of Man, Jersey.',
+        'You might want to use a VPN or a proxy server (with --proxy) to workaround.'
+      ].join('\n')
     )
     t.true(error instanceof Error)
     t.truthy(error.command)
