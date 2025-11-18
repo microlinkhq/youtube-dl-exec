@@ -15,12 +15,18 @@ const parse = ({ stdout, stderr, ...details }) => {
 }
 
 const create = binaryPath => {
+  const isWin = process.platform === 'win32'
+  if (isWin) binaryPath = `"${binaryPath}"`
   const fn = (...args) =>
     fn
       .exec(...args)
       .then(parse)
       .catch(parse)
   fn.exec = (url, flags, opts) => $(binaryPath, [url].concat(args(flags)), opts)
+  fn.exec = (url, flags, opts = {}) => {
+    if (isWin) opts.shell = true
+    return $(binaryPath, [url].concat(args(flags)), opts)
+  }
   return fn
 }
 
