@@ -10,23 +10,28 @@ const args = (flags = {}) => dargs(flags, { useEquals: false }).filter(Boolean)
 const isJSON = (str = '') => str.startsWith('{')
 
 const parse = ({ stdout, stderr, ...details }) => {
-  if (details.exitCode === 0) { return isJSON(stdout) ? JSON.parse(stdout) : stdout }
+  if (details.exitCode === 0) {
+    return isJSON(stdout) ? JSON.parse(stdout) : stdout
+  }
   throw Object.assign(new Error(stderr), { stderr, stdout }, details)
 }
 
 const create = binaryPath => {
-  const isWin = process.platform === 'win32'
-  if (isWin) binaryPath = `"${binaryPath}"`
+  const needsQuoting = process.platform === 'win32' && /\s/.test(binaryPath)
+  const safeBinaryPath = needsQuoting ? `"${binaryPath}"` : binaryPath
+
   const fn = (...args) =>
     fn
       .exec(...args)
       .then(parse)
       .catch(parse)
-  fn.exec = (url, flags, opts) => $(binaryPath, [url].concat(args(flags)), opts)
+
   fn.exec = (url, flags, opts = {}) => {
-    if (isWin) opts.shell = true
-    return $(binaryPath, [url].concat(args(flags)), opts)
+    const fullArgs = [url].concat(args(flags))
+    if (needsQuoting) opts.shell = true
+    return $(safeBinaryPath, fullArgs, opts)
   }
+
   return fn
 }
 
