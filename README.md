@@ -18,7 +18,7 @@
 
 ## Install
 
-> **Note**: It requires Python 3.7 or above available in your system as `python3`. Otherwise, the library will throw an error.
+> **Note**: It requires Python 3.9 or above available in your system as `python3`. Otherwise, the library will throw an error.
 
 ```bash
 $ npm install youtube-dl-exec --save
