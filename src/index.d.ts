@@ -1,5 +1,5 @@
 import { SpawnOptions } from 'child_process';
-import { SubprocessPromise } from 'tinyspawn';
+import { TinyspawnPromise } from 'tinyspawn';
 
 export type Payload = {
   id: string;
@@ -266,6 +266,7 @@ export type OptionFormatSort =
   | "br"
   | "asr";
 export type OptionFormatSortPlus = OptionFormatSort | `+${OptionFormatSort}`
+export type JSRuntime = 'node' | 'bun' | 'quickjs' | 'deno'
 export type Flags = {
   abortOnError?: boolean
   abortOnUnavailableFragment?: boolean
@@ -339,6 +340,7 @@ export type Flags = {
   ignoreConfig?: boolean
   ignoreErrors?: boolean
   includeAds?: boolean
+  jsRuntimes?: JSRuntime | `${JSRuntime}:${string}`
   keepFragments?: boolean
   keepVideo?: boolean
   limitRate?: string
@@ -392,6 +394,7 @@ export type Flags = {
   recodeVideo?: string
   referer?: string
   rejectTitle?: string
+  remoteComponent?: string
   remuxVideo?: string
   restrictFilenames?: boolean
   retries?: number | 'infinite'
@@ -427,7 +430,7 @@ export type Flags = {
   youtubeSkipDashManifest?: boolean
 }
 
-export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => SubprocessPromise
+export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => TinyspawnPromise
 export type Create = (binaryPath: string) => { (url: string, flags?: Flags, options?: SpawnOptions): Promise<Payload>; exec: Exec }
 export const youtubeDl: ((...args: Parameters<Exec>) => Promise<Payload | string>) & { exec: Exec, create: Create }
 
