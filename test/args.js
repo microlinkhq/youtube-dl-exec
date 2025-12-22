@@ -16,7 +16,9 @@ test('parse arguments into flags', t => {
     preferFreeFormats: true,
     youtubeSkipDashManifest: true,
     carDir: '/tmp',
-    addHeader: ['referer:example.com', 'user-agent:googlebot']
+    addHeader: ['referer:example.com', 'user-agent:googlebot'],
+    jsRuntimes: 'node:/path/to/node',
+    remoteComponent: 'ejs:npm'
   })
 
   t.deepEqual(flags, [
@@ -29,6 +31,10 @@ test('parse arguments into flags', t => {
     '--add-header',
     'referer:example.com',
     '--add-header',
-    'user-agent:googlebot'
+    'user-agent:googlebot',
+    '--js-runtimes',
+    'node:/path/to/node',
+    '--remote-component',
+    'ejs:npm'
   ])
 })
