@@ -74,6 +74,11 @@ export type Payload = {
   _type: string;
   _version: Version;
   channel_is_verified?: boolean;
+  album?: string;
+  artists?: string[];
+  track?: string;
+  release_date?: string;
+  release_year?: number;
 }
 
 export type Version = {
@@ -428,6 +433,7 @@ export type Flags = {
   xattrSetFilesize?: boolean
   yesPlaylist?: boolean
   youtubeSkipDashManifest?: boolean
+  noCheckFormats: boolean
 }
 
 export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => TinyspawnPromise
