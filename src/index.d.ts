@@ -433,7 +433,7 @@ export type Flags = {
   xattrSetFilesize?: boolean
   yesPlaylist?: boolean
   youtubeSkipDashManifest?: boolean
-  noCheckFormats: boolean
+  noCheckFormats?: boolean
 }
 
 export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => TinyspawnPromise
