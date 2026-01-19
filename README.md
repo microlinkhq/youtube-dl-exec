@@ -85,6 +85,24 @@ Alternatively, you can access to the subprocess to have more granular control. S
 
 Also, combine that with [YOUTUBE_DL_SKIP_DOWNLOAD](#youtube_dl_skip_download). See [environment variables](#environment-variables) to know more.
 
+## Plugins
+
+In order to use yt-dlp plugins, you just need to create a `plugin.zip` file inside `yt-dlp-plugins` directory under the same binaty path.
+
+For example, if you are using the default binary path:
+
+```
+node_modules/youtube-dl-exec/bin
+```
+
+Then the plugins should be placed at:
+
+```
+node_modules/youtube-dl-exec/bin/yt-dlp-plugins/plugin.zip
+```
+
+For more detailed information you can see yt-dlp's plugins installation guide: [yt-dlp#installing-plugins](https://github.com/yt-dlp/yt-dlp#installing-plugins)
+
 ## Timeout & cancellation
 
 You can customize [spawn#options](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options) by passing a third argument:
@@ -210,26 +228,6 @@ YOUTUBE_DL_SKIP_DOWNLOAD=true npm install
 ### YOUTUBE_DL_SKIP_PYTHON_CHECK
 
 When is present, it skip the python step on installation.
-
-## Installing plugins
-
-Most of yt-dlp plugins are provided as .zip packages.
-
-To connect a plugin to yt-dlp you just need to create `yt-dlp-plugins` directory under this path (where yt-dlp.exe file sits): 
-```
-node_modules/youtube-dl-exec/bin
-```
-and put a plugin's .zip inside this folder. 
-So the full path will be: 
-```
-node_modules/youtube-dl-exec/bin/yt-dlp-plugins/plugin.zip
-```
-
-. . .
-
-When using yt-dlp.exe - you also need to create a folder `yt-dlp-plugins` in the same folder as your .exe file. Then place the extracted plugin's folder inside the `yt-dlp-plugins` folder. 
-
-For more detailed information you can see yt-dlp's plugins installation guide: [yt-dlp#installing-plugins](https://github.com/yt-dlp/yt-dlp#installing-plugins)
 
 ## License
 
