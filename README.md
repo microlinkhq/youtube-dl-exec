@@ -101,7 +101,7 @@ Then the plugins should be placed at:
 node_modules/youtube-dl-exec/bin/yt-dlp-plugins/plugin.zip
 ```
 
-For more detailed information you can see yt-dlp's plugins installation guide: [yt-dlp#installing-plugins](https://github.com/yt-dlp/yt-dlp#installing-plugins)
+For more detailed information you can see yt-dlp's plugins installation guide: [yt-dlp#installing-plugins](https://github.com/yt-dlp/yt-dlp#installing-plugins).
 
 ## Timeout & cancellation
 
