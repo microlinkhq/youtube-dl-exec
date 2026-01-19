@@ -211,6 +211,26 @@ YOUTUBE_DL_SKIP_DOWNLOAD=true npm install
 
 When is present, it skip the python step on installation.
 
+## Installing plugins
+
+Most of yt-dlp plugins are provided as .zip packages.
+
+To connect a plugin to yt-dlp you just need to create `yt-dlp-plugins` directory under this path (where yt-dlp.exe file sits): 
+```
+node_modules/youtube-dl-exec/bin
+```
+and put a plugin's .zip inside this folder. 
+So the full path will be: 
+```
+node_modules/youtube-dl-exec/bin/yt-dlp-plugins/plugin.zip
+```
+
+. . .
+
+When using yt-dlp.exe - you also need to create a folder `yt-dlp-plugins` in the same folder as your .exe file. Then place the extracted plugin's folder inside the `yt-dlp-plugins` folder. 
+
+For more detailed information you can see yt-dlp's plugins installation guide: [yt-dlp#installing-plugins](https://github.com/yt-dlp/yt-dlp#installing-plugins)
+
 ## License
 
 **youtube-dl-exec** © [microlink.io](https://microlink.io), released under the [MIT](https://github.com/microlinkhq/youtube-dl-exec/blob/master/LICENSE.md) License.<br>
