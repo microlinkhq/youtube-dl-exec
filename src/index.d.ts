@@ -19,19 +19,29 @@ export type Payload = {
   tags: string[];
   playable_in_embed: boolean;
   live_status: string;
+  media_type: string;
   release_timestamp: null;
   _format_sort_fields: string[];
   automatic_captions: { [key: string]: AutomaticCaption[] };
   subtitles: any;
+  album?: string;
+  artists?: string[];
+  track?: string;
+  release_date?: string;
+  release_year?: number;
   comment_count: number | null;
   chapters: null;
   heatmap: Heatmap[] | null;
+  like_count: number;
   channel: string;
   channel_follower_count: number;
+  creators: string[] | null;
   uploader: string;
   uploader_id: string;
   uploader_url: string;
   upload_date: string;
+  timestamp: number;
+  alt_title?: string;
   availability: string;
   original_url: string;
   webpage_url_basename: string;
@@ -45,6 +55,8 @@ export type Payload = {
   duration_string: string;
   is_live: boolean;
   was_live: boolean;
+  artist?: string;
+  creator?: string;
   requested_subtitles: null;
   _has_drm: null;
   epoch: number;
@@ -74,11 +86,6 @@ export type Payload = {
   _type: string;
   _version: Version;
   channel_is_verified?: boolean;
-  album?: string;
-  artists?: string[];
-  track?: string;
-  release_date?: string;
-  release_year?: number;
 }
 
 export type Version = {
