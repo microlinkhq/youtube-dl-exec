@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.0.30 (2026-01-26)
+
+
+### Bug Fixes
+
+* **types:** add missing fields ([#266](https://github.com/microlinkhq/youtube-dl-exec/issues/266)) ([8baccee](https://github.com/microlinkhq/youtube-dl-exec/commit/8baccee502fe26663e593dbba798db698883bd15))
+
 ### 3.0.29 (2026-01-11)
 
 
