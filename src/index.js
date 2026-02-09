@@ -1,7 +1,5 @@
 'use strict'
 
-const { dirname, basename } = require('node:path')
-
 const dargs = require('dargs')
 const $ = require('tinyspawn')
 
@@ -12,7 +10,9 @@ const args = (flags = {}) => dargs(flags, { useEquals: false }).filter(Boolean)
 const isJSON = (str = '') => str.startsWith('{')
 
 const parse = ({ stdout, stderr, ...details }) => {
-  if (details.exitCode === 0) { return isJSON(stdout) ? JSON.parse(stdout) : stdout }
+  if (details.exitCode === 0) {
+    return isJSON(stdout) ? JSON.parse(stdout) : stdout
+  }
   throw Object.assign(new Error(stderr), { stderr, stdout }, details)
 }
 
@@ -26,9 +26,7 @@ const create = binaryPath => {
   return fn
 }
 
-const update = (binaryPath = constants.YOUTUBE_DL_PATH) => {
-  return $(basename(binaryPath), ['-U'], { cwd: dirname(binaryPath) })
-}
+const update = (binaryPath = constants.YOUTUBE_DL_PATH) => $(binaryPath, ['-U'])
 
 const defaultInstance = create(constants.YOUTUBE_DL_PATH)
 
