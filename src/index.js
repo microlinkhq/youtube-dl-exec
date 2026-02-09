@@ -27,7 +27,7 @@ const create = binaryPath => {
 }
 
 const update = (binaryPath = constants.YOUTUBE_DL_PATH) => {
-  return $(basename(binaryPath), ['-U'], { cwd: dirname(binaryPath) })
+  return $("./"+basename(binaryPath), ['-U'], { cwd: dirname(binaryPath) })
 }
 
 const defaultInstance = create(constants.YOUTUBE_DL_PATH)
