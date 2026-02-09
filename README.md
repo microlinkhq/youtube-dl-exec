@@ -181,6 +181,10 @@ setTimeout(subprocess.cancel, 30000)
 
 It creates a `yt-dlp` using the `binaryPath` provided.
 
+### youtubedl.update(binaryPath)
+
+Updates the `yt-dlp` executable at the provided path. If not path is provided, the default instance will be updated.
+
 ## Environment variables
 
 The environment variables are used to customize the [postinstall script](https://github.com/microlinkhq/youtube-dl-exec/blob/master/scripts/postinstall.js) behavior that will be triggered after `npm install` is performed.

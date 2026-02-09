@@ -1,5 +1,7 @@
 'use strict'
 
+const { dirname, basename } = require('node:path')
+
 const dargs = require('dargs')
 const $ = require('tinyspawn')
 
@@ -24,11 +26,16 @@ const create = binaryPath => {
   return fn
 }
 
+const update = (binaryPath = constants.YOUTUBE_DL_PATH) => {
+  return $(basename(binaryPath), ['-U'], { cwd: dirname(binaryPath) })
+}
+
 const defaultInstance = create(constants.YOUTUBE_DL_PATH)
 
 module.exports = defaultInstance
 module.exports.youtubeDl = defaultInstance
 module.exports.create = create
+module.exports.update = update
 module.exports.args = args
 module.exports.isJSON = isJSON
 module.exports.constants = constants
