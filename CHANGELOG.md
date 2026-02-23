@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.2 (2026-02-23)
+
+
+### Bug Fixes
+
+* **types:** set binaryPath parameter as optional ([#269](https://github.com/microlinkhq/youtube-dl-exec/issues/269)) ([6351d25](https://github.com/microlinkhq/youtube-dl-exec/commit/6351d254853233d926daed4a2d2c8e3379797c66))
+
 ### 3.1.1 (2026-02-09)
 
 
