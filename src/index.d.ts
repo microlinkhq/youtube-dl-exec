@@ -445,7 +445,7 @@ export type Flags = {
 
 export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => TinyspawnPromise
 export type Create = (binaryPath: string) => { (url: string, flags?: Flags, options?: SpawnOptions): Promise<Payload>; exec: Exec }
-export type Update = (binaryPath: string) => TinyspawnPromise
+export type Update = (binaryPath?: string) => TinyspawnPromise
 export const youtubeDl: ((...args: Parameters<Exec>) => Promise<Payload | string>) & { exec: Exec, create: Create }
 
 export function exec(...args: Parameters<Exec>): ReturnType<Exec>
