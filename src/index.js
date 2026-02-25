@@ -17,12 +17,18 @@ const parse = ({ stdout, stderr, ...details }) => {
 }
 
 const create = binaryPath => {
+  const needsQuoting = process.platform === 'win32' && /\s/.test(binaryPath)
+  const safeBinaryPath = needsQuoting ? `"${binaryPath}"` : binaryPath
   const fn = (...args) =>
     fn
       .exec(...args)
       .then(parse)
       .catch(parse)
-  fn.exec = (url, flags, opts) => $(binaryPath, [url].concat(args(flags)), opts)
+  fn.exec = (url, flags, opts = {}) => {
+    const fullArgs = [url].concat(args(flags))
+    if (needsQuoting) opts.shell = true
+    return $(safeBinaryPath, fullArgs, opts)
+  }
   return fn
 }
 
