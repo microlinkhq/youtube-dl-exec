@@ -26,9 +26,7 @@ jobs:
         with:
           version: latest
       - name: Install
-        run: pnpm install --ignore-scripts
-      - name: Download yt-dlp binary
-        run: node scripts/postinstall.js
+        run: pnpm install --dangerously-allow-all-builds
       - name: Test
         run: pnpm test
       - name: Report
