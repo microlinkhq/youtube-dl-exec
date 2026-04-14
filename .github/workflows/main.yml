@@ -50,6 +50,8 @@ jobs:
           version: latest
       - name: Install
         run: pnpm install --ignore-scripts
+      - name: Download yt-dlp binary
+        run: node scripts/postinstall.js
       - name: Test
         run: pnpm test
       - name: Report
