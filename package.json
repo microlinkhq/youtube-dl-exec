@@ -204,7 +204,8 @@
   },
   "license": "MIT",
   "ava": {
-    "workerThreads": false
+    "workerThreads": false,
+    "concurrency": 1
   },
   "commitlint": {
     "extends": [
