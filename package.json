@@ -169,7 +169,7 @@
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@types/node": "latest",
-    "ava": "7",
+    "ava": "8",
     "c8": "latest",
     "ci-publish": "latest",
     "finepack": "latest",
