@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.7 (2026-05-16)
+
+
+### Bug Fixes
+
+* tests updated ([efc7cfd](https://github.com/microlinkhq/youtube-dl-exec/commit/efc7cfd04616c3c4954dc43b7ac2e96f81b799f3))
+
 ### 3.1.6 (2026-05-04)
 
 ### 3.1.5 (2026-04-14)
