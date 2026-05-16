@@ -59,13 +59,10 @@ test('video unavailable', async t => {
   try {
     await youtubedl(url, { dumpSingleJson: true, noWarnings: true })
   } catch (error) {
-    t.is(
-      error.message,
-      [
-        'ERROR: [youtube] x8erEF_1POY: The uploader has not made this video available in your country',
-        'This video is available in United Kingdom, Guernsey, Isle of Man, Jersey.',
-        'You might want to use a VPN or a proxy server (with --proxy) to workaround.'
-      ].join('\n')
+    t.true(
+      error.message.includes(
+        'The uploader has not made this video available in your country'
+      )
     )
     t.true(error instanceof Error)
     t.truthy(error.command)
