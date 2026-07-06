@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.9 (2026-07-06)
+
+
+### Bug Fixes
+
+* pass authorization header to fetch in postinstall ([#278](https://github.com/microlinkhq/youtube-dl-exec/issues/278)) ([c4c6101](https://github.com/microlinkhq/youtube-dl-exec/commit/c4c6101e6579f76523bcc0a6a60532bd580e1242))
+
 ### 3.1.8 (2026-06-18)
 
 ### 3.1.7 (2026-05-16)
