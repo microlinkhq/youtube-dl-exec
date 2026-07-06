@@ -25,9 +25,9 @@ const getBinary = async url => {
   const headers = GITHUB_TOKEN
     ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
     : {}
-  let response = await fetch(url, headers)
+  let response = await fetch(url, { headers })
 
-  if (!response.headers.get('content-type') !== 'application/octet-stream') {
+  if (response.headers.get('content-type') !== 'application/octet-stream') {
     const payload = await response.json()
     if (!response.ok) throw new Error(JSON.stringify(payload, null, 2))
     response = await getLatest(payload)
