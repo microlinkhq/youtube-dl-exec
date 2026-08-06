@@ -29,7 +29,8 @@ const getBinary = async url => {
   try {
     const response = await fetch(url, { headers })
     return await handleResponse(response)
-  } catch {
+  } catch (error) {
+    if (!GITHUB_TOKEN) throw error
     const response = await fetch(url)
     return await handleResponse(response)
   }
