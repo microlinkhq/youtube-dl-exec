@@ -21,22 +21,21 @@ const getLatest = ({ assets }) => {
   return fetch(url)
 }
 
-const getBinary = async url => {
-  const headers = GITHUB_TOKEN
-    ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
-    : {}
+const UNAUTHORIZED_STATUS = new Set([401, 403])
 
-  try {
-    const response = await fetch(url, { headers })
-    return await handleResponse(response)
-  } catch (error) {
-    if (!GITHUB_TOKEN) throw error
-    const response = await fetch(url)
-    return await handleResponse(response)
-  }
+const fetchWithToken = async url => {
+  const response = await fetch(url, {
+    headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
+  })
+  if (!UNAUTHORIZED_STATUS.has(response.status)) return response
+  debug('token rejected, retrying anonymously', { status: response.status })
+  await response.body?.cancel()
+  return fetch(url)
 }
 
-const handleResponse = async (response) => {
+const getBinary = async url => {
+  let response = GITHUB_TOKEN ? await fetchWithToken(url) : await fetch(url)
+
   if (response.headers.get('content-type') !== 'application/octet-stream') {
     const payload = await response.json()
     if (!response.ok) throw new Error(JSON.stringify(payload, null, 2))

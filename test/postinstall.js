@@ -74,6 +74,72 @@ test('forwards the GitHub token as authorization header', async t => {
   t.is(await readBinary(dir), 'binary content')
 })
 
+test('retries anonymously when the GitHub token is rejected', async t => {
+  const authorizations = []
+  const { server, origin } = await createFixtureServer((req, res) => {
+    if (req.url === '/release') {
+      authorizations.push(req.headers.authorization)
+      res.setHeader('content-type', 'application/json')
+      if (req.headers.authorization) {
+        res.statusCode = 401
+        return res.end(JSON.stringify({ message: 'Bad credentials' }))
+      }
+      return res.end(
+        JSON.stringify({
+          assets: ['yt-dlp', 'yt-dlp.exe'].map(name => ({
+            name,
+            browser_download_url: `http://${req.headers.host}/download`
+          }))
+        })
+      )
+    }
+    res.setHeader('content-type', 'application/octet-stream')
+    res.end('binary content')
+  })
+
+  const dir = await mkdtemp(path.join(tmpdir(), 'youtube-dl-exec-'))
+
+  await runPostinstall(
+    createEnv({
+      GITHUB_TOKEN: 'bad-token',
+      YOUTUBE_DL_HOST: `${origin}/release`,
+      YOUTUBE_DL_DIR: dir
+    })
+  )
+
+  server.close()
+
+  t.deepEqual(authorizations, ['Bearer bad-token', undefined])
+  t.is(await readBinary(dir), 'binary content')
+})
+
+test('surfaces non authorization errors without retrying', async t => {
+  let requests = 0
+  const { server, origin } = await createFixtureServer((req, res) => {
+    requests++
+    res.statusCode = 500
+    res.setHeader('content-type', 'application/json')
+    res.end(JSON.stringify({ message: 'upstream exploded' }))
+  })
+
+  const dir = await mkdtemp(path.join(tmpdir(), 'youtube-dl-exec-'))
+
+  const error = await t.throwsAsync(
+    runPostinstall(
+      createEnv({
+        GITHUB_TOKEN: 'good-token',
+        YOUTUBE_DL_HOST: `${origin}/release`,
+        YOUTUBE_DL_DIR: dir
+      })
+    )
+  )
+
+  server.close()
+
+  t.true(error.message.includes('upstream exploded'))
+  t.is(requests, 1)
+})
+
 test('downloads directly when the response is a binary stream', async t => {
   const { server, origin } = await createFixtureServer((req, res) => {
     res.setHeader('content-type', 'application/octet-stream')
