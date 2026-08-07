@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.12 (2026-08-07)
+
+
+### Bug Fixes
+
+* try-catch when fetching data from gh with a bad token ([#282](https://github.com/microlinkhq/youtube-dl-exec/issues/282)) ([47e8ff5](https://github.com/microlinkhq/youtube-dl-exec/commit/47e8ff559da28d958542f28f728df4eb30898333))
+
 ### 3.1.11 (2026-08-05)
 
 ### 3.1.10 (2026-08-03)
