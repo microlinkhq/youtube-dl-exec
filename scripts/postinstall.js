@@ -21,11 +21,18 @@ const getLatest = ({ assets }) => {
   return fetch(url)
 }
 
+const request = async url => {
+  if (!GITHUB_TOKEN) return fetch(url)
+  const response = await fetch(url, {
+    headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
+  })
+  if (response.status !== 401 && response.status !== 403) return response
+  debug('token rejected, retrying anonymously', { status: response.status })
+  return fetch(url)
+}
+
 const getBinary = async url => {
-  const headers = GITHUB_TOKEN
-    ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
-    : {}
-  let response = await fetch(url, { headers })
+  let response = await request(url)
 
   if (response.headers.get('content-type') !== 'application/octet-stream') {
     const payload = await response.json()
