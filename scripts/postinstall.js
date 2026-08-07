@@ -28,7 +28,6 @@ const request = async url => {
   })
   if (response.status !== 401 && response.status !== 403) return response
   debug('token rejected, retrying anonymously', { status: response.status })
-  await response.body?.cancel()
   return fetch(url)
 }
 
