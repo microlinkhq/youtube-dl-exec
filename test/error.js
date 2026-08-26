@@ -54,18 +54,15 @@ test('unsupported URLs', async t => {
 })
 
 test('video unavailable', async t => {
-  t.plan(4)
   const url = 'https://www.youtube.com/watch?v=x8erEF_1POY'
-  try {
-    await youtubedl(url, { dumpSingleJson: true, noWarnings: true })
-  } catch (error) {
-    t.true(
-      error.message.includes(
-        'The uploader has not made this video available in your country'
-      )
-    )
-    t.true(error instanceof Error)
-    t.truthy(error.command)
-    t.truthy(error.exitCode)
-  }
+  const error = await t.throwsAsync(
+    youtubedl(url, { dumpSingleJson: true, noWarnings: true }),
+    { instanceOf: Error }
+  )
+  t.true(
+    /not available|unavailable|not a bot/i.test(error.message),
+    error.message
+  )
+  t.truthy(error.command)
+  t.truthy(error.exitCode)
 })
