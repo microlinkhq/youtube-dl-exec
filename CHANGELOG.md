@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.13 (2026-08-26)
+
+
+### Bug Fixes
+
+* loosen video unavailable assertion ([143b289](https://github.com/microlinkhq/youtube-dl-exec/commit/143b289e5a655f68bba91e63b9e491e46cd0cb51))
+
 ### 3.1.12 (2026-08-07)
 
 
