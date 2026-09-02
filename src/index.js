@@ -23,7 +23,7 @@ const create = binaryPath => {
       .then(parse)
       .catch(parse)
   fn.exec = (url, flags, opts = {}) =>
-    $(binaryPath, [url, ...args(flags)], opts)
+    $(binaryPath, [url, ...args(flags)].filter(Boolean), opts)
   return fn
 }
 
