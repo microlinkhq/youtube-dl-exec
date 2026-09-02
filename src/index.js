@@ -1,7 +1,6 @@
 'use strict'
 
-const { spawn } = require('child_process')
-const { EOL } = require('os')
+const $ = require('tinyspawn')
 const dargs = require('dargs')
 
 const constants = require('./constants')
@@ -15,67 +14,6 @@ const parse = ({ stdout, stderr, ...details }) => {
     return isJSON(stdout) ? JSON.parse(stdout) : stdout
   }
   throw Object.assign(new Error(stderr), { stderr, stdout }, details)
-}
-
-const EE_PROPS = Object.getOwnPropertyNames(
-  require('events').EventEmitter.prototype
-)
-  .filter(name => !name.startsWith('_'))
-  .concat(['kill', 'ref', 'unref'])
-
-const collect = stream => {
-  const chunks = []
-  if (stream) stream.on('data', chunk => chunks.push(chunk))
-  return chunks
-}
-
-const text = chunks => Buffer.concat(chunks).toString().trim()
-
-const childProcessError = (file, argv, child) => {
-  const command = `${file} ${argv.join(' ')}`
-  const error = new Error(
-    `The command spawned as:${EOL}${EOL}  \`${command}\`${EOL}${EOL}exited with:${EOL}${EOL}  \`{ signal: '${child.signalCode}', code: ${child.exitCode} }\` ${EOL}${EOL}with the following trace:${EOL}`
-  )
-  error.command = command
-  error.name = 'ChildProcessError'
-  Object.keys(child).forEach(key => {
-    if (!key.startsWith('_') && key !== 'stdio' && key !== 'stdin') {
-      error[key] = child[key]
-    }
-  })
-  return error
-}
-
-// tinyspawn splits `file` on spaces, which forced the #270 shell:true
-// workaround and the Windows injection. Pass the path to spawn intact.
-const $ = (file, argv = [], opts = {}) => {
-  argv = argv.filter(Boolean)
-  let child
-
-  const promise = new Promise((resolve, reject) => {
-    child = spawn(file, argv, opts)
-    const stdout = collect(child.stdout)
-    const stderr = collect(child.stderr)
-
-    child.on('error', reject).on('close', code => {
-      Object.defineProperty(child, 'stdout', { get: () => text(stdout) })
-      Object.defineProperty(child, 'stderr', { get: () => text(stderr) })
-      if (code !== 0) {
-        const error = childProcessError(file, argv, child)
-        if (opts.reject !== false) return reject(error)
-        child.error = error
-      }
-      resolve(child)
-    })
-  })
-
-  const subprocess = Object.assign(promise, child)
-  if (child) {
-    EE_PROPS.forEach(name => {
-      subprocess[name] = child[name].bind(child)
-    })
-  }
-  return subprocess
 }
 
 const create = binaryPath => {
