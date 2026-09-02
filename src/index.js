@@ -1,7 +1,7 @@
 'use strict'
 
-const dargs = require('dargs')
 const $ = require('tinyspawn')
+const dargs = require('dargs')
 
 const constants = require('./constants')
 
@@ -17,18 +17,13 @@ const parse = ({ stdout, stderr, ...details }) => {
 }
 
 const create = binaryPath => {
-  const needsQuoting = process.platform === 'win32' && /\s/.test(binaryPath)
-  const safeBinaryPath = needsQuoting ? `"${binaryPath}"` : binaryPath
-  const fn = (...args) =>
+  const fn = (...fnArgs) =>
     fn
-      .exec(...args)
+      .exec(...fnArgs)
       .then(parse)
       .catch(parse)
-  fn.exec = (url, flags, opts = {}) => {
-    const fullArgs = [url].concat(args(flags))
-    if (needsQuoting) opts.shell = true
-    return $(safeBinaryPath, fullArgs, opts)
-  }
+  fn.exec = (url, flags, opts = {}) =>
+    $(binaryPath, [url, ...args(flags)].filter(Boolean), opts)
   return fn
 }
 
