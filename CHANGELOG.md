@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.14 (2026-09-02)
+
+
+### Bug Fixes
+
+* spawn yt-dlp without a shell ([#283](https://github.com/microlinkhq/youtube-dl-exec/issues/283)) ([509ee03](https://github.com/microlinkhq/youtube-dl-exec/commit/509ee036190d3d35911965eedf35dc27dce26e3f)), closes [#270](https://github.com/microlinkhq/youtube-dl-exec/issues/270) [#270](https://github.com/microlinkhq/youtube-dl-exec/issues/270)
+
 ### 3.1.13 (2026-08-26)
 
 
