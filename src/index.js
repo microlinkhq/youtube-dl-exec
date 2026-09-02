@@ -42,7 +42,7 @@ const $ = (cmd, cmdArgs = [], opts = {}) => {
     const stdout = collect(childProcess.stdout)
     const stderr = collect(childProcess.stderr)
 
-    childProcess.on('error', reject).on('exit', exitCode => {
+    childProcess.on('error', reject).on('close', exitCode => {
       Object.defineProperty(childProcess, 'stdout', { get: () => text(stdout) })
       Object.defineProperty(childProcess, 'stderr', { get: () => text(stderr) })
       if (exitCode !== 0) {
