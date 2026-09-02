@@ -1,7 +1,8 @@
 'use strict'
 
+const { spawn } = require('child_process')
+const { EOL } = require('os')
 const dargs = require('dargs')
-const $ = require('tinyspawn')
 
 const constants = require('./constants')
 
@@ -16,19 +17,72 @@ const parse = ({ stdout, stderr, ...details }) => {
   throw Object.assign(new Error(stderr), { stderr, stdout }, details)
 }
 
+const EE_PROPS = Object.getOwnPropertyNames(
+  require('events').EventEmitter.prototype
+)
+  .filter(name => !name.startsWith('_'))
+  .concat(['kill', 'ref', 'unref'])
+
+const collect = (stream, buffer = []) =>
+  stream ? stream.on('data', data => buffer.push(data)) && buffer : buffer
+
+const text = buffer =>
+  buffer.length
+    ? Buffer.concat(buffer).toString().trim().replace(/\n$/, '')
+    : ''
+
+// Spawn file+args with no shell. tinyspawn splits `file` on spaces, which is
+// what forced the #270 shell:true workaround and the Windows injection.
+const $ = (cmd, cmdArgs = [], opts = {}) => {
+  cmdArgs = cmdArgs.filter(Boolean)
+  let childProcess
+
+  const promise = new Promise((resolve, reject) => {
+    childProcess = spawn(cmd, cmdArgs, opts)
+    const stdout = collect(childProcess.stdout)
+    const stderr = collect(childProcess.stderr)
+
+    childProcess.on('error', reject).on('exit', exitCode => {
+      Object.defineProperty(childProcess, 'stdout', { get: () => text(stdout) })
+      Object.defineProperty(childProcess, 'stderr', { get: () => text(stderr) })
+      if (exitCode !== 0) {
+        const command = `${cmd} ${cmdArgs.join(' ')}`
+        const error = new Error(
+          `The command spawned as:${EOL}${EOL}  \`${command}\`${EOL}${EOL}exited with:${EOL}${EOL}  \`{ signal: '${childProcess.signalCode}', code: ${childProcess.exitCode} }\` ${EOL}${EOL}with the following trace:${EOL}`
+        )
+        error.command = command
+        error.name = 'ChildProcessError'
+        Object.keys(childProcess)
+          .filter(
+            key => !key.startsWith('_') && !['stdio', 'stdin'].includes(key)
+          )
+          .forEach(key => {
+            error[key] = childProcess[key]
+          })
+        if (opts.reject !== false) return reject(error)
+        childProcess.error = error
+      }
+      return resolve(childProcess)
+    })
+  })
+
+  const subprocess = Object.assign(promise, childProcess)
+  if (childProcess) {
+    EE_PROPS.forEach(name => {
+      subprocess[name] = childProcess[name].bind(childProcess)
+    })
+  }
+  return subprocess
+}
+
 const create = binaryPath => {
-  const needsQuoting = process.platform === 'win32' && /\s/.test(binaryPath)
-  const safeBinaryPath = needsQuoting ? `"${binaryPath}"` : binaryPath
-  const fn = (...args) =>
+  const fn = (...fnArgs) =>
     fn
-      .exec(...args)
+      .exec(...fnArgs)
       .then(parse)
       .catch(parse)
-  fn.exec = (url, flags, opts = {}) => {
-    const fullArgs = [url].concat(args(flags))
-    if (needsQuoting) opts.shell = true
-    return $(safeBinaryPath, fullArgs, opts)
-  }
+  fn.exec = (url, flags, opts = {}) =>
+    $(binaryPath, [url].concat(args(flags)), opts)
   return fn
 }
 
