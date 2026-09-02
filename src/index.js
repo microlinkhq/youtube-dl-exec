@@ -23,53 +23,56 @@ const EE_PROPS = Object.getOwnPropertyNames(
   .filter(name => !name.startsWith('_'))
   .concat(['kill', 'ref', 'unref'])
 
-const collect = (stream, buffer = []) =>
-  stream ? stream.on('data', data => buffer.push(data)) && buffer : buffer
+const collect = stream => {
+  const chunks = []
+  if (stream) stream.on('data', chunk => chunks.push(chunk))
+  return chunks
+}
 
-const text = buffer =>
-  buffer.length
-    ? Buffer.concat(buffer).toString().trim().replace(/\n$/, '')
-    : ''
+const text = chunks => Buffer.concat(chunks).toString().trim()
 
-// Spawn file+args with no shell. tinyspawn splits `file` on spaces, which is
-// what forced the #270 shell:true workaround and the Windows injection.
-const $ = (cmd, cmdArgs = [], opts = {}) => {
-  cmdArgs = cmdArgs.filter(Boolean)
-  let childProcess
+const childProcessError = (file, argv, child) => {
+  const command = `${file} ${argv.join(' ')}`
+  const error = new Error(
+    `The command spawned as:${EOL}${EOL}  \`${command}\`${EOL}${EOL}exited with:${EOL}${EOL}  \`{ signal: '${child.signalCode}', code: ${child.exitCode} }\` ${EOL}${EOL}with the following trace:${EOL}`
+  )
+  error.command = command
+  error.name = 'ChildProcessError'
+  Object.keys(child).forEach(key => {
+    if (!key.startsWith('_') && key !== 'stdio' && key !== 'stdin') {
+      error[key] = child[key]
+    }
+  })
+  return error
+}
+
+// tinyspawn splits `file` on spaces, which forced the #270 shell:true
+// workaround and the Windows injection. Pass the path to spawn intact.
+const $ = (file, argv = [], opts = {}) => {
+  argv = argv.filter(Boolean)
+  let child
 
   const promise = new Promise((resolve, reject) => {
-    childProcess = spawn(cmd, cmdArgs, opts)
-    const stdout = collect(childProcess.stdout)
-    const stderr = collect(childProcess.stderr)
+    child = spawn(file, argv, opts)
+    const stdout = collect(child.stdout)
+    const stderr = collect(child.stderr)
 
-    childProcess.on('error', reject).on('close', exitCode => {
-      Object.defineProperty(childProcess, 'stdout', { get: () => text(stdout) })
-      Object.defineProperty(childProcess, 'stderr', { get: () => text(stderr) })
-      if (exitCode !== 0) {
-        const command = `${cmd} ${cmdArgs.join(' ')}`
-        const error = new Error(
-          `The command spawned as:${EOL}${EOL}  \`${command}\`${EOL}${EOL}exited with:${EOL}${EOL}  \`{ signal: '${childProcess.signalCode}', code: ${childProcess.exitCode} }\` ${EOL}${EOL}with the following trace:${EOL}`
-        )
-        error.command = command
-        error.name = 'ChildProcessError'
-        Object.keys(childProcess)
-          .filter(
-            key => !key.startsWith('_') && !['stdio', 'stdin'].includes(key)
-          )
-          .forEach(key => {
-            error[key] = childProcess[key]
-          })
+    child.on('error', reject).on('close', code => {
+      Object.defineProperty(child, 'stdout', { get: () => text(stdout) })
+      Object.defineProperty(child, 'stderr', { get: () => text(stderr) })
+      if (code !== 0) {
+        const error = childProcessError(file, argv, child)
         if (opts.reject !== false) return reject(error)
-        childProcess.error = error
+        child.error = error
       }
-      return resolve(childProcess)
+      resolve(child)
     })
   })
 
-  const subprocess = Object.assign(promise, childProcess)
-  if (childProcess) {
+  const subprocess = Object.assign(promise, child)
+  if (child) {
     EE_PROPS.forEach(name => {
-      subprocess[name] = childProcess[name].bind(childProcess)
+      subprocess[name] = child[name].bind(child)
     })
   }
   return subprocess
@@ -82,7 +85,7 @@ const create = binaryPath => {
       .then(parse)
       .catch(parse)
   fn.exec = (url, flags, opts = {}) =>
-    $(binaryPath, [url].concat(args(flags)), opts)
+    $(binaryPath, [url, ...args(flags)], opts)
   return fn
 }
 
