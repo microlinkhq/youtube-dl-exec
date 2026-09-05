@@ -2,7 +2,7 @@
   "name": "youtube-dl-exec",
   "description": "Promise-friendly Node.js wrapper around youtube-dl / yt-dlp for downloading media.",
   "homepage": "https://github.com/microlinkhq/youtube-dl-exec",
-  "version": "3.1.14",
+  "version": "3.1.15",
   "types": "src/index.d.ts",
   "main": "src/index.js",
   "author": {

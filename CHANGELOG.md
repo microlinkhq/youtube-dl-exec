@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.15 (2026-09-05)
+
+
+### Bug Fixes
+
+* treat url as a positional after -- ([#284](https://github.com/microlinkhq/youtube-dl-exec/issues/284)) ([545d79f](https://github.com/microlinkhq/youtube-dl-exec/commit/545d79f2af794c27322e6dc86de3fcbff2bd857c))
+
 ### 3.1.14 (2026-09-02)
 
 
