@@ -172,7 +172,6 @@
     "yt-dlp"
   ],
   "dependencies": {
-    "binary-version-check": "~6.1.0",
     "dargs": "~7.0.0",
     "debug-logfmt": "~1.4.0",
     "is-unix": "~2.0.10",
@@ -208,7 +207,7 @@
     "lint": "standard && tsd",
     "postinstall": "node scripts/postinstall.js",
     "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
-    "preinstall": "node scripts/preinstall.mjs",
+    "preinstall": "node scripts/preinstall.js",
     "pretest": "npm run lint",
     "release": "standard-version -a",
     "release:github": "github-generate-release",
