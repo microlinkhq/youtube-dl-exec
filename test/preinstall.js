@@ -7,7 +7,7 @@ const path = require('node:path')
 const $ = require('tinyspawn')
 const test = require('ava')
 
-const SCRIPT_NAME = 'preinstall.mjs'
+const SCRIPT_NAME = 'preinstall.js'
 
 const SCRIPTS_DIR = path.join(__dirname, '..', 'scripts')
 
