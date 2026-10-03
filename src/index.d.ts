@@ -279,63 +279,104 @@ export type OptionFormatSort =
   | "asr";
 export type OptionFormatSortPlus = OptionFormatSort | `+${OptionFormatSort}`
 export type JSRuntime = 'node' | 'bun' | 'quickjs' | 'deno'
+export type JSRuntimeLocation = JSRuntime | `${JSRuntime}:${string}`
 export type Flags = {
   abortOnError?: boolean
   abortOnUnavailableFragment?: boolean
-  addHeader?: string[]
+  abortOnUnavailableFragments?: boolean
+  addChapters?: boolean
+  addHeader?: string | string[]
+  addHeaders?: string | string[]
   addMetadata?: boolean
   ageLimit?: number
   allFormats?: boolean
+  allowDynamicMpd?: boolean
   allSubs?: boolean
   apListMso?: boolean
   apMso?: string
   apPassword?: string
   apUsername?: string
   audioFormat?: string
-  audioQuality?: number
+  audioMultistreams?: boolean
+  audioQuality?: number | string
   autonumberStart?: number
   batchFile?: string
   bidiWorkaround?: boolean
+  breakMatchFilters?: string | string[]
+  breakOnExisting?: boolean
+  breakPerInput?: boolean
   bufferSize?: string
   cacheDir?: string
   callHome?: boolean
-  configLocation?: string
+  checkAllFormats?: boolean
+  checkFormats?: boolean
+  cleanInfoJson?: boolean
+  cleanInfojson?: boolean
+  clientCertificate?: string
+  clientCertificateKey?: string
+  clientCertificatePassword?: string
+  color?: string | string[]
+  compatOptions?: string | string[]
+  concatPlaylist?: 'never' | 'always' | 'multi_video'
+  concurrentFragments?: number
+  configLocation?: string | string[]
+  configLocations?: string | string[]
   consoleTitle?: boolean
   continue?: boolean
+  convertSub?: string
   convertSubs?: string
+  convertSubtitles?: string
+  convertThumbnails?: string
   cookies?: string
+  cookiesFromBrowser?: string
   date?: string
   dateafter?: string
   datebefore?: string
   defaultSearch?: string
   downloadArchive?: string
-  downloadSections?: string
+  downloader?: string | string[]
+  downloaderArgs?: string | string[]
+  downloadSections?: string | string[]
   dumpJson?: boolean
   dumpPages?: boolean
   dumpSingleJson?: boolean
   dumpUserAgent?: boolean
+  embedChapters?: boolean
+  embedInfoJson?: boolean
+  embedMetadata?: boolean
   embedSubs?: boolean
   embedThumbnail?: boolean
+  enableFileUrls?: boolean
   encoding?: string
-  exec?: string
-  externalDownloader?: string
-  externalDownloaderArgs?: string
+  exec?: string | string[]
+  externalDownloader?: string | string[]
+  externalDownloaderArgs?: string | string[]
   extractAudio?: boolean
+  extractorArgs?: string | string[]
   extractorDescriptions?: boolean
+  extractorRetries?: number | 'infinite'
   ffmpegLocation?: string
+  fileAccessRetries?: number | 'infinite'
   fixup?: string
   flatPlaylist?: boolean
+  forceDownloadArchive?: boolean
   forceGenericExtractor?: boolean
   forceIpv4?: boolean
   forceIpv6?: boolean
   forceKeyframesAtCuts?: boolean
   forceOverwrites?: boolean
+  forceWriteArchive?: boolean
+  forceWriteDownloadArchive?: boolean
   format?: string
   formatSort?: OptionFormatSortPlus[]
+  formatSortForce?: boolean
+  formatSortReset?: boolean
+  fragmentRetries?: number | 'infinite'
   geoBypass?: boolean
   geoBypassCountry?: string
   geoBypassIpBlock?: string
   geoVerificationProxy?: string
+  getComments?: boolean
   getDuration?: boolean
   getFilename?: boolean
   getFormat?: boolean
@@ -346,23 +387,33 @@ export type Flags = {
   help?: boolean
   hlsPreferFfmpeg?: boolean
   hlsPreferNative?: boolean
+  hlsSplitDiscontinuity?: boolean
   hlsUseMpegts?: boolean
   httpChunkSize?: string
   id?: boolean
+  ies?: string | string[]
   ignoreConfig?: boolean
+  ignoreDynamicMpd?: boolean
   ignoreErrors?: boolean
+  ignoreNoFormatsError?: boolean
+  impersonate?: string
   includeAds?: boolean
-  jsRuntimes?: JSRuntime | `${JSRuntime}:${string}`
+  jsRuntimes?: JSRuntimeLocation | JSRuntimeLocation[]
   keepFragments?: boolean
   keepVideo?: boolean
+  lazyPlaylist?: boolean
+  legacyServerConnect?: boolean
   limitRate?: string
   listExtractors?: boolean
   listFormats?: boolean
+  listImpersonateTargets?: boolean
   listSubs?: boolean
   listThumbnails?: boolean
+  liveFromStart?: boolean
   loadInfoJson?: string
   markWatched?: boolean
-  matchFilter?: string
+  matchFilter?: string | string[]
+  matchFilters?: string | string[]
   matchTitle?: string
   maxDownloads?: number
   maxFilesize?: string
@@ -371,76 +422,193 @@ export type Flags = {
   mergeOutputFormat?: string
   metadataFromTitle?: string
   minFilesize?: string
+  minSleepInterval?: number
   minViews?: number
+  mtime?: boolean
   netrc?: boolean
+  netrcCmd?: string
+  netrcLocation?: string
   newline?: boolean
+  noAbortOnError?: boolean
+  noAbortOnUnavailableFragments?: boolean
+  noAddChapters?: boolean
+  noAddMetadata?: boolean
+  noAllowDynamicMpd?: boolean
+  noAudioMultistreams?: boolean
+  noBatchFile?: boolean
+  noBreakMatchFilters?: boolean
+  noBreakOnExisting?: boolean
+  noBreakPerInput?: boolean
   noCacheDir?: boolean
   noCheckCertificates?: boolean
+  noCheckFormats?: boolean
+  noCleanInfoJson?: boolean
+  noCleanInfojson?: boolean
   noColor?: boolean
+  noConfig?: boolean
+  noConfigLocations?: boolean
+  noContinue?: boolean
+  noCookies?: boolean
+  noCookiesFromBrowser?: boolean
+  noDownload?: boolean
+  noDownloadArchive?: boolean
+  noEmbedChapters?: boolean
+  noEmbedInfoJson?: boolean
+  noEmbedMetadata?: boolean
+  noEmbedSubs?: boolean
+  noEmbedThumbnail?: boolean
+  noExec?: boolean
+  noFlatPlaylist?: boolean
+  noForceKeyframesAtCuts?: boolean
+  noForceOverwrites?: boolean
+  noFormatSortForce?: boolean
+  noGetComments?: boolean
+  noHlsSplitDiscontinuity?: boolean
+  noHlsUseMpegts?: boolean
+  noIgnoreDynamicMpd?: boolean
+  noIgnoreErrors?: boolean
+  noIgnoreNoFormatsError?: boolean
+  noJsRuntimes?: boolean
+  noKeepFragments?: boolean
+  noKeepVideo?: boolean
+  noLazyPlaylist?: boolean
+  noLiveFromStart?: boolean
+  noMarkWatched?: boolean
+  noMatchFilters?: boolean
   noMtime?: boolean
   noOverwrites?: boolean
   noPart?: boolean
   noPlaylist?: boolean
+  noPluginDirs?: boolean
   noPostOverwrites?: boolean
+  noPreferFreeFormats?: boolean
   noProgress?: boolean
+  noQuiet?: boolean
+  noRemoteComponents?: boolean
+  noRemoveChapters?: boolean
   noResizeBuffer?: boolean
+  noRestrictFilenames?: boolean
+  noSimulate?: boolean
+  noSkipUnavailableFragments?: boolean
+  noSplitChapters?: boolean
+  noSplitTracks?: boolean
+  noSponsorblock?: boolean
+  noUpdate?: boolean
+  noVideoMultistreams?: boolean
+  noWaitForVideo?: boolean
   noWarnings?: boolean
-  output?: string
+  noWindowsFilenames?: boolean
+  noWriteAutomaticSubs?: boolean
+  noWriteAutoSubs?: boolean
+  noWriteComments?: boolean
+  noWriteDescription?: boolean
+  noWriteInfoJson?: boolean
+  noWritePlaylistMetafiles?: boolean
+  noWriteSrt?: boolean
+  noWriteSubs?: boolean
+  noWriteThumbnail?: boolean
+  output?: string | string[]
   outputNaPlaceholder?: string
+  parseMetadata?: string | string[]
+  part?: boolean
   password?: string
-  paths?: string
-  playlistEnd?: number | 'last'
+  paths?: string | string[]
+  playlistEnd?: number
   playlistItems?: string
   playlistRandom?: boolean
   playlistReverse?: boolean
   playlistStart?: number
-  postprocessorArgs?: string
+  pluginDirs?: string | string[]
+  postOverwrites?: boolean
+  postprocessorArgs?: string | string[]
+  ppa?: string | string[]
   preferAvconv?: boolean
   preferFfmpeg?: boolean
   preferFreeFormats?: boolean
   preferInsecure?: boolean
+  preferUnsecure?: boolean
+  presetAlias?: string | string[]
+  print?: string | string[]
   printJson?: boolean
   printTraffic?: boolean
+  progress?: boolean
+  progressDelta?: number
+  progressTemplate?: string | string[]
   proxy?: string
   quiet?: boolean
+  rateLimit?: string
   recodeVideo?: string
   referer?: string
   rejectTitle?: string
-  remoteComponent?: string
+  remoteComponent?: string | string[]
+  remoteComponents?: string | string[]
+  removeChapters?: string | string[]
   remuxVideo?: string
+  resizeBuffer?: boolean
   restrictFilenames?: boolean
   retries?: number | 'infinite'
+  retrySleep?: string | string[]
   rmCacheDir?: boolean
   simulate?: boolean
   skipDownload?: boolean
+  skipPlaylistAfterErrors?: number
   skipUnavailableFragments?: boolean
   sleepInterval?: number
+  sleepRequests?: number
+  sleepSubtitles?: number
   socketTimeout?: number
   sourceAddress?: string
+  splitChapters?: boolean
+  splitTracks?: boolean
+  sponsorblockApi?: string
+  sponsorblockChapterTitle?: string
+  sponsorblockMark?: string | string[]
+  sponsorblockRemove?: string | string[]
+  srtLangs?: string | string[]
   subFormat?: string
-  subLang?: string
+  subLang?: string | string[]
+  subLangs?: string | string[]
+  throttledRate?: string
   trimFilenames?: number
+  trimFileNames?: number
   twofactor?: string
   update?: boolean
+  updateTo?: string
+  useExtractors?: string | string[]
+  usePostprocessor?: string | string[]
   userAgent?: string
   username?: string
   verbose?: boolean
   version?: boolean
+  videoMultistreams?: boolean
   videoPassword?: string
+  waitForVideo?: number | string
   windowsFilenames?: boolean
   writeAllThumbnails?: boolean
   writeAnnotations?: boolean
+  writeAutomaticSubs?: boolean
   writeAutoSub?: boolean
+  writeAutoSubs?: boolean
+  writeComments?: boolean
   writeDescription?: boolean
+  writeDesktopLink?: boolean
   writeInfoJson?: boolean
+  writeLink?: boolean
   writePages?: boolean
+  writePlaylistMetafiles?: boolean
+  writeSrt?: boolean
   writeSub?: boolean
+  writeSubs?: boolean
   writeThumbnail?: boolean
+  writeUrlLink?: boolean
+  writeWeblocLink?: boolean
+  xattr?: boolean
   xattrs?: boolean
   xattrSetFilesize?: boolean
+  xff?: string
+  yesOverwrites?: boolean
   yesPlaylist?: boolean
   youtubeSkipDashManifest?: boolean
-  noCheckFormats?: boolean
 }
 
 export type Exec = (url: string, flags?: Flags, options?: SpawnOptions) => TinyspawnPromise
