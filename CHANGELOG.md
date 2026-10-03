@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.17 (2026-10-03)
+
+
+### Bug Fixes
+
+* type every yt-dlp flag ([#286](https://github.com/microlinkhq/youtube-dl-exec/issues/286)) ([cd43a8b](https://github.com/microlinkhq/youtube-dl-exec/commit/cd43a8bf368fd5508a73f3ae3bd05f6a017c6894)), closes [#285](https://github.com/microlinkhq/youtube-dl-exec/issues/285)
+
 ### 3.1.16 (2026-10-03)
 
 
