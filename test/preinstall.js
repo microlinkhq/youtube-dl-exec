@@ -1,60 +1,67 @@
 'use strict'
 
-const { copyFile, mkdir, mkdtemp, rm, writeFile } = require('node:fs/promises')
+const { chmod, mkdtemp, rm, writeFile } = require('node:fs/promises')
 const { tmpdir } = require('node:os')
 const path = require('node:path')
 
 const $ = require('tinyspawn')
 const test = require('ava')
 
-const SCRIPT_NAME = 'preinstall.js'
+const SCRIPT_PATH = path.join(__dirname, '..', 'scripts', 'preinstall.js')
 
-const SCRIPTS_DIR = path.join(__dirname, '..', 'scripts')
+const testOnUnix = process.platform === 'win32' ? test.skip : test
 
 const { YOUTUBE_DL_SKIP_PYTHON_CHECK, ...env } = process.env
 
-const runPreinstall = dir =>
-  $(process.execPath, [path.join(dir, SCRIPT_NAME)], { env })
+const runPreinstall = extraEnv =>
+  $(process.execPath, [SCRIPT_PATH], { env: { ...env, ...extraEnv } })
 
-const createProjectWithoutDependencies = async t => {
+const createBinDir = async (t, pythons = {}) => {
   const dir = await mkdtemp(path.join(tmpdir(), 'preinstall-'))
   t.teardown(() => rm(dir, { recursive: true, force: true }))
-  await copyFile(
-    path.join(SCRIPTS_DIR, SCRIPT_NAME),
-    path.join(dir, SCRIPT_NAME)
-  )
+  for (const [binary, version] of Object.entries(pythons)) {
+    const file = path.join(dir, binary)
+    await writeFile(file, `#!/bin/sh\necho "Python ${version}"\n`)
+    await chmod(file, 0o755)
+  }
   return dir
 }
 
-const installBrokenVersionCheck = async dir => {
-  const packageDir = path.join(dir, 'node_modules', 'binary-version-check')
-  await mkdir(packageDir, { recursive: true })
-  await writeFile(
-    path.join(packageDir, 'package.json'),
-    JSON.stringify({ type: 'module', exports: './index.js' })
-  )
-  await writeFile(
-    path.join(packageDir, 'index.js'),
-    "import 'a-dependency-that-is-missing'\n"
-  )
-}
-
-test('passes when dependencies are not installed yet', async t => {
-  const dir = await createProjectWithoutDependencies(t)
-
-  await t.notThrowsAsync(runPreinstall(dir))
+test('passes with the python of this machine', async t => {
+  await t.notThrowsAsync(runPreinstall())
 })
 
-test('fails when the version check is installed but broken', async t => {
-  const dir = await createProjectWithoutDependencies(t)
-  await installBrokenVersionCheck(dir)
+test('fails when python is missing', async t => {
+  const PATH = await createBinDir(t)
 
-  const error = await t.throwsAsync(runPreinstall(dir))
+  const error = await t.throwsAsync(runPreinstall({ PATH }))
 
   t.is(error.exitCode, 1)
-  t.true(error.stderr.includes('a-dependency-that-is-missing'))
+  t.true(error.stderr.includes('youtube-dl-exec needs Python 3.9 or newer'))
 })
 
-test('passes when python is available', async t => {
-  await t.notThrowsAsync(runPreinstall(SCRIPTS_DIR))
+test('passes when python is missing but the check is skipped', async t => {
+  const PATH = await createBinDir(t)
+
+  await t.notThrowsAsync(
+    runPreinstall({ PATH, YOUTUBE_DL_SKIP_PYTHON_CHECK: '1' })
+  )
+})
+
+testOnUnix('passes with the minimum python', async t => {
+  const PATH = await createBinDir(t, { python3: '3.9.0' })
+
+  await t.notThrowsAsync(runPreinstall({ PATH }))
+})
+
+testOnUnix('fails when python is too old', async t => {
+  const PATH = await createBinDir(t, { python3: '3.8.20', python: '2.7.18' })
+
+  await t.throwsAsync(runPreinstall({ PATH }))
+})
+
+testOnUnix('falls back to python when python3 is too old', async t => {
+  const PATH = await createBinDir(t, { python3: '3.8.20', python: '3.12.1' })
+
+  await t.notThrowsAsync(runPreinstall({ PATH }))
 })

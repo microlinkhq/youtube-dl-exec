@@ -172,7 +172,6 @@
     "yt-dlp"
   ],
   "dependencies": {
-    "binary-version-check": "~6.1.0",
     "dargs": "~7.0.0",
     "debug-logfmt": "~1.4.0",
     "is-unix": "~2.0.10",
@@ -195,7 +194,7 @@
     "tsd": "latest"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">= 18"
   },
   "files": [
     "scripts",
