@@ -9,22 +9,21 @@ const test = require('ava')
 
 const SCRIPT_NAME = 'preinstall.mjs'
 
-const SCRIPT_PATH = path.join(__dirname, '..', 'scripts', SCRIPT_NAME)
+const SCRIPTS_DIR = path.join(__dirname, '..', 'scripts')
 
-const createEnv = () => {
-  const { YOUTUBE_DL_SKIP_PYTHON_CHECK, ...env } = process.env
-  return env
-}
+const { YOUTUBE_DL_SKIP_PYTHON_CHECK, ...env } = process.env
 
-const runPreinstall = scriptPath =>
-  $(process.execPath, [scriptPath], { env: createEnv() })
+const runPreinstall = dir =>
+  $(process.execPath, [path.join(dir, SCRIPT_NAME)], { env })
 
-const copyScriptToEmptyProject = async t => {
+const createProjectWithoutDependencies = async t => {
   const dir = await mkdtemp(path.join(tmpdir(), 'preinstall-'))
   t.teardown(() => rm(dir, { recursive: true, force: true }))
-  const scriptPath = path.join(dir, SCRIPT_NAME)
-  await copyFile(SCRIPT_PATH, scriptPath)
-  return { dir, scriptPath }
+  await copyFile(
+    path.join(SCRIPTS_DIR, SCRIPT_NAME),
+    path.join(dir, SCRIPT_NAME)
+  )
+  return dir
 }
 
 const installBrokenVersionCheck = async dir => {
@@ -41,25 +40,21 @@ const installBrokenVersionCheck = async dir => {
 }
 
 test('passes when dependencies are not installed yet', async t => {
-  const { scriptPath } = await copyScriptToEmptyProject(t)
+  const dir = await createProjectWithoutDependencies(t)
 
-  const { exitCode } = await runPreinstall(scriptPath)
-
-  t.is(exitCode, 0)
+  await t.notThrowsAsync(runPreinstall(dir))
 })
 
 test('fails when the version check is installed but broken', async t => {
-  const { dir, scriptPath } = await copyScriptToEmptyProject(t)
+  const dir = await createProjectWithoutDependencies(t)
   await installBrokenVersionCheck(dir)
 
-  const error = await t.throwsAsync(runPreinstall(scriptPath))
+  const error = await t.throwsAsync(runPreinstall(dir))
 
   t.is(error.exitCode, 1)
   t.true(error.stderr.includes('a-dependency-that-is-missing'))
 })
 
 test('passes when python is available', async t => {
-  const { exitCode } = await runPreinstall(SCRIPT_PATH)
-
-  t.is(exitCode, 0)
+  await t.notThrowsAsync(runPreinstall(SCRIPTS_DIR))
 })
