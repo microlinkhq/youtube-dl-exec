@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.16 (2026-10-03)
+
+
+### Bug Fixes
+
+* let preinstall pass on a fresh install ([#287](https://github.com/microlinkhq/youtube-dl-exec/issues/287)) ([10ad912](https://github.com/microlinkhq/youtube-dl-exec/commit/10ad9122f677e871e596ef70bf58d88ee83bb15e))
+
 ### 3.1.15 (2026-09-05)
 
 
