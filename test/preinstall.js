@@ -18,6 +18,18 @@ const { YOUTUBE_DL_SKIP_PYTHON_CHECK, ...env } = process.env
 const runPreinstall = extraEnv =>
   $(process.execPath, [SCRIPT_PATH], { env: { ...env, ...extraEnv } })
 
+const runPreinstallOnWindows = extraEnv =>
+  $(
+    process.execPath,
+    [
+      '-e',
+      `Object.defineProperty(process, 'platform', { value: 'win32' }); require(${JSON.stringify(
+        SCRIPT_PATH
+      )})`
+    ],
+    { env: { ...env, ...extraEnv } }
+  )
+
 const createBinDir = async (t, pythons = {}) => {
   const dir = await mkdtemp(path.join(tmpdir(), 'preinstall-'))
   t.teardown(() => rm(dir, { recursive: true, force: true }))
@@ -46,13 +58,17 @@ test('passes with the python of this machine', async t => {
   await t.notThrowsAsync(runPreinstall())
 })
 
-test('fails when python is missing', async t => {
+testOnUnix('fails when python is missing', async t => {
   const PATH = await createBinDir(t)
 
   const error = await t.throwsAsync(runPreinstall({ PATH }))
 
   t.is(error.exitCode, 1)
-  t.true(error.stderr.includes('youtube-dl-exec needs Python 3.11 or newer'))
+  t.true(
+    error.stderr.includes(
+      'youtube-dl-exec needs Python 3.11 or newer as `python3`'
+    )
+  )
 })
 
 test('passes when python is missing but the check is skipped', async t => {
@@ -70,15 +86,30 @@ testOnUnix('passes with the minimum python', async t => {
 })
 
 testOnUnix('fails when python is too old', async t => {
-  const PATH = await createBinDir(t, { python3: '3.10.14', python: '2.7.18' })
+  const PATH = await createBinDir(t, { python3: '3.10.14' })
 
   await t.throwsAsync(runPreinstall({ PATH }))
 })
 
-testOnUnix('falls back to python when python3 is too old', async t => {
-  const PATH = await createBinDir(t, { python3: '3.10.14', python: '3.12.1' })
+testOnUnix(
+  'fails when python3 is too old even if python is new enough',
+  async t => {
+    const PATH = await createBinDir(t, { python3: '3.10.14', python: '3.12.1' })
 
-  await t.notThrowsAsync(runPreinstall({ PATH }))
+    await t.throwsAsync(runPreinstall({ PATH }))
+  }
+)
+
+testOnUnix('fails when only python is available', async t => {
+  const PATH = await createBinDir(t, { python: '3.12.1' })
+
+  await t.throwsAsync(runPreinstall({ PATH }))
+})
+
+test('passes on windows without python, since yt-dlp.exe bundles it', async t => {
+  const PATH = await createBinDir(t)
+
+  await t.notThrowsAsync(runPreinstallOnWindows({ PATH }))
 })
 
 testOnUnix('requires the same python as the bundled yt-dlp', async t => {

@@ -18,7 +18,7 @@
 
 ## Install
 
-> **Note**: It requires Python 3.11 or above available in your system as `python3`. Otherwise, the library will throw an error.
+> **Note**: It requires Python 3.11 or above available in your system as `python3`. Otherwise, the library will throw an error. On Windows it is not needed, since `yt-dlp.exe` bundles its own Python.
 
 ```bash
 $ npm install youtube-dl-exec --save

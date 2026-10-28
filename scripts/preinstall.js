@@ -2,9 +2,11 @@
 
 const { execFileSync } = require('node:child_process')
 
-const PYTHON_BINARIES = ['python3', 'python']
+const YT_DLP_PYTHON_BINARY = 'python3'
 
 const MINIMUM_PYTHON = { major: 3, minor: 11 }
+
+const isWindowsExecutableBundlingPython = process.platform === 'win32'
 
 const isSupportedPython = binary => {
   try {
@@ -24,9 +26,10 @@ const isSupportedPython = binary => {
 
 if (
   process.env.YOUTUBE_DL_SKIP_PYTHON_CHECK === undefined &&
-  !PYTHON_BINARIES.some(isSupportedPython)
+  !isWindowsExecutableBundlingPython &&
+  !isSupportedPython(YT_DLP_PYTHON_BINARY)
 ) {
   throw new Error(
-    `youtube-dl-exec needs Python ${MINIMUM_PYTHON.major}.${MINIMUM_PYTHON.minor} or newer. You can skip this check passing \`YOUTUBE_DL_SKIP_PYTHON_CHECK=1\``
+    `youtube-dl-exec needs Python ${MINIMUM_PYTHON.major}.${MINIMUM_PYTHON.minor} or newer as \`${YT_DLP_PYTHON_BINARY}\`. You can skip this check passing \`YOUTUBE_DL_SKIP_PYTHON_CHECK=1\``
   )
 }
