@@ -54,13 +54,14 @@ test('unsupported URLs', async t => {
 })
 
 test('video unavailable', async t => {
-  const url = 'https://www.youtube.com/watch?v=x8erEF_1POY'
+  const videoId = 'x8erEF_1POY'
+  const url = `https://www.youtube.com/watch?v=${videoId}`
   const error = await t.throwsAsync(
     youtubedl(url, { dumpSingleJson: true, noWarnings: true }),
     { instanceOf: Error }
   )
   t.true(
-    /not available|unavailable|not a bot/i.test(error.message),
+    error.message.startsWith(`ERROR: [youtube] ${videoId}: `),
     error.message
   )
   t.truthy(error.command)
