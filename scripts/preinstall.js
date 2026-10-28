@@ -4,7 +4,7 @@ const { execFileSync } = require('node:child_process')
 
 const PYTHON_BINARIES = ['python3', 'python']
 
-const MINIMUM_PYTHON = { major: 3, minor: 9 }
+const MINIMUM_PYTHON = { major: 3, minor: 11 }
 
 const isSupportedPython = binary => {
   try {
