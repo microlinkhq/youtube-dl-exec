@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.19 (2026-10-28)
+
+
+### Bug Fixes
+
+* require Python 3.11, matching the bundled yt-dlp ([#289](https://github.com/microlinkhq/youtube-dl-exec/issues/289)) ([c6c9d3e](https://github.com/microlinkhq/youtube-dl-exec/commit/c6c9d3eab3e60e6749261a5ff15de5bdbfba06a8))
+
 ### 3.1.18 (2026-10-28)
 
 ### 3.1.17 (2026-10-03)
