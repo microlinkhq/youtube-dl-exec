@@ -54,10 +54,17 @@ test('unsupported URLs', async t => {
 })
 
 test('video unavailable', async t => {
+  // YouTube regularly outlasts AVA's 10s of silence.
+  t.timeout(60_000)
   const videoId = 'x8erEF_1POY'
   const url = `https://www.youtube.com/watch?v=${videoId}`
   const error = await t.throwsAsync(
-    youtubedl(url, { dumpSingleJson: true, noWarnings: true }),
+    youtubedl(
+      url,
+      { dumpSingleJson: true, noWarnings: true },
+      // Settle a hung yt-dlp. That silence timer does not fire a second time.
+      { timeout: 55_000, killSignal: 'SIGKILL' }
+    ),
     { instanceOf: Error }
   )
   t.true(

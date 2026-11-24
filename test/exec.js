@@ -12,5 +12,12 @@ test('access to subprocess object', async t => {
     }
   )
 
+  // The snapshot only needs the handle. A live yt-dlp holds the worker open.
+  t.teardown(() => {
+    const done = subprocess.catch(() => {})
+    subprocess.kill('SIGKILL')
+    return done
+  })
+
   t.snapshot(Object.keys(subprocess))
 })
